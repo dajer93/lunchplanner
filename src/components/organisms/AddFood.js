@@ -5,7 +5,7 @@ import Form from '#/components/molecules/Form';
 
 import IngredientsList from '../others/IngredientsList';
 
-const AddFood = ({ addFood }) => {
+const AddFood = ({ addFood, style }) => {
   const [ingredients, setIngredients] = useState([]);
 
   const onAddIngredient = form => {
@@ -21,7 +21,7 @@ const AddFood = ({ addFood }) => {
   };
 
   return (
-    <div>
+    <div style={style}>
       <Form
         fields={[
           { name: "name", value: "Food name", title: "Food name" },

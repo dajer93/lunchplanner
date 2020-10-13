@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
 import "#/App.css";
 
-import Form from "#/components/molecules/Form";
-
 import IngredientsList from "../others/IngredientsList";
 
-const FoodList = ({ foods }) => (
-    <div>
+import "./foodList.css";
+
+const FoodList = ({ foods, style }) => (
+    <div style={style} className="list">
       {foods.map(({ description, name, ingredients }) => (
-        <div>
+        <div className="food">
           <div>{name}</div>
           <div>{description}</div>
           <IngredientsList ingredients={ingredients} />

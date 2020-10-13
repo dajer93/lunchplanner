@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "#/App.css";
 
-import ManageFoods from '#/components/templates/ManageFoods';
+import Planner from '#/components/pages/Planner';
 
 const App = () => {
   return (
     <div>
-      <ManageFoods />
+      <Planner />
     </div>
   );
 };
