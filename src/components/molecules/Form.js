@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Button from '#/components/atoms/Button';
-import FormFields from '#/components/molecules/FormFields';
+import FormFields from './FormFields';
 
 const Form = ({ children, fields, onSubmit, submitButton }) => {
   const [form, setForm] = useState();
@@ -18,9 +18,19 @@ const Form = ({ children, fields, onSubmit, submitButton }) => {
     setForm({});
   };
 
+  const onKeyDown = ({ keyCode, target }) => {
+    if (keyCode === 13) {
+      if (target.name === fields[fields.length-1].name) {
+        onSubmit(form);
+        setForm({});
+      }
+    }
+  }
+
   const formFieldProps = {
     fields,
     form,
+    onKeyDown,
     onChange: onInput,
   };
 

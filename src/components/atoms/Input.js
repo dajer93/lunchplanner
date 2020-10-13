@@ -1,24 +1,35 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
-const Input = ({
-  name,
-  onChange,
-  onFocus,
-  title,
-  type = "text",
-  value,
-  useLabel,
-}) => (
-  <div>
-    {useLabel && <span>{title}</span>}
-    <input
-      type={type}
-      name={name}
-      onChange={onChange}
-      onFocus={onFocus}
-      value={value}
-    />
-  </div>
-);
+const Input = (
+  { name, onChange, onFocus, onKeyDown, title, type = "text", value, useLabel },
+  ref
+) =>
+  type === "textarea" ? (
+    <div>
+      {useLabel && <span>{title}</span>}
+      <textarea
+        ref={ref}
+        type={type}
+        name={name}
+        onChange={onChange}
+        onFocus={onFocus}
+        onKeyDown={onKeyDown}
+        value={value}
+      />
+    </div>
+  ) : (
+    <div>
+      {useLabel && <span>{title}</span>}
+      <input
+        ref={ref}
+        type={type}
+        name={name}
+        onChange={onChange}
+        onFocus={onFocus}
+        onKeyDown={onKeyDown}
+        value={value}
+      />
+    </div>
+  );
 
-export default Input;
+export default forwardRef(Input);
