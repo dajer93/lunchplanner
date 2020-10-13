@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import Calendar from "react-calendar";
 
 import Calendar from "#/components/templates/Calendar";
 import ManageFoods from "#/components/templates/ManageFoods";
@@ -17,7 +16,7 @@ const Planner = () => {
         <ManageFoods />
       </div>
       <div className="column">
-        <Calendar onChange={onChange} value={date.date} />
+        <Calendar />
       </div>
     </div>
   );
