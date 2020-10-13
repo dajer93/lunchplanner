@@ -1,6 +1,8 @@
 import React from "react";
 
-export const FormFields = ({ fields = [], form = {}, onChange }) => {
+import Input from '#/components/atoms/Input';
+
+const FormFields = ({ fields = [], form = {}, onChange }) => {
   return (
     <form>
       {fields.map((field, index) => (
@@ -14,3 +16,5 @@ export const FormFields = ({ fields = [], form = {}, onChange }) => {
     </form>
   );
 };
+
+export default FormFields;

@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Input = ({
+const Input = ({
   name,
   onChange,
   onFocus,
@@ -20,3 +20,5 @@ export const Input = ({
     />
   </div>
 );
+
+export default Input;

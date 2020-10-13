@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
-export const Form = ({ children, fields, onSubmit, submitButton }) => {
+import Button from '#/components/atoms/Button';
+import FormFields from '#/components/molecules/FormFields';
+
+const Form = ({ children, fields, onSubmit, submitButton }) => {
   const [form, setForm] = useState();
 
   const onInput = ({ target }) => {
@@ -29,3 +32,5 @@ export const Form = ({ children, fields, onSubmit, submitButton }) => {
     </div>
   );
 };
+
+export default Form;

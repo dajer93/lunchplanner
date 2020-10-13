@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "@/App.css";
+import "#/App.css";
 
-import Form from '@/components/organisms/Form';
+import Form from '#/components/organisms/Form';
 
 const App = () => {
   const [ingredients, setIngredients] = useState([]);
