@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
+import FoodList from "#/components/molecules/FoodList";
 import AddFood from "#/components/organisms/AddFood";
-import FoodList from "#/components/organisms/FoodList";
 
 const initialFoods = [
   {
@@ -32,8 +32,8 @@ const ManageFoods = () => {
   console.log(foods);
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <AddFood style={{ width: '30%' }} addFood={addFood} />
-      <FoodList  style={{ width: '70%' }} foods={foods} />
+      <AddFood style={{ width: '50%' }} addFood={addFood} />
+      <FoodList  style={{ width: '50%' }} foods={foods} />
     </div>
   );
 };

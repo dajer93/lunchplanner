@@ -6,7 +6,7 @@ const Input = (
 ) =>
   type === "textarea" ? (
     <div>
-      {useLabel && <span>{title}</span>}
+      {useLabel && <div style={{ fontSize: 14, margin: "8px 0 4px" }}>{title}</div>}
       <textarea
         ref={ref}
         type={type}
@@ -19,7 +19,7 @@ const Input = (
     </div>
   ) : (
     <div>
-      {useLabel && <span>{title}</span>}
+      {useLabel && <div style={{ fontSize: 14, margin: "8px 0 4px" }}>{title}</div>}
       <input
         ref={ref}
         type={type}

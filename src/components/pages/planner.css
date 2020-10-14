@@ -3,6 +3,10 @@
   flex-direction: row;
 }
 
-.column {
-  width: 50%;
+.column:first-child {
+  width: 30%;
+}
+
+.column:last-child {
+  width: 70%;
 }

@@ -12,6 +12,7 @@ const FormFields = ({ fields = [], form = {}, onChange, onKeyDown }) => {
           value={form[field.name] || ""}
           onChange={onChange}
           onKeyDown={onKeyDown}
+          useLabel
         />
       ))}
     </div>

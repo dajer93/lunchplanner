@@ -6,10 +6,6 @@ import ManageFoods from "#/components/templates/ManageFoods";
 import "./planner.css";
 
 const Planner = () => {
-  const [date, setDate] = useState({ date: new Date() });
-
-  const onChange = (date) => setDate({ date });
-
   return (
     <div className="container">
       <div className="column">
