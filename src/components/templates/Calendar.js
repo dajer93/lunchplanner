@@ -59,7 +59,7 @@ const Calendar = () => {
 
   return (
     <div className="calendar">
-      <h3>Your calendar</h3>
+      <h3>Naptár</h3>
       <div className="week">
         {week.map((day, index) => (
           <CalendarDay

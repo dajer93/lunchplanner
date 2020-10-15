@@ -22,10 +22,10 @@ const AddFood = ({ addFood, style }) => {
 
   return (
     <div style={style}>
-      <h3>Add recipe</h3>
+      <h3>Recept hozzáadása</h3>
       <Form
         fields={[
-          { name: "name", value: "Food name", title: "Food name" },
+          { name: "name", value: "Food name", title: "Étel neve" },
           // {
           //   name: "description",
           //   value: "Description",
@@ -38,7 +38,7 @@ const AddFood = ({ addFood, style }) => {
       >
         <Form
           fields={[
-            { name: "ingredient", title: "Ingredients" }
+            { name: "ingredient", title: "" }
           ]}
           onSubmit={onAddIngredient}
           submitButton="Add new"

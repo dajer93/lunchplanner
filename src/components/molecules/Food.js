@@ -32,7 +32,7 @@ const Food = ({
       <div style={{ fontWeight: 'bold' }}>{name}</div>
       {useDescription && <div>{description}</div>}
       {useIngredientsList && <IngredientsList ingredients={ingredients} />}
-      {useRemoveButton && <button style={{ marginTop: 4 }} onClick={onRemove}>Empty</button> }
+      {useRemoveButton && <button style={{ marginTop: 4 }} onClick={onRemove}>Törlés</button> }
     </div>
   );
 };
