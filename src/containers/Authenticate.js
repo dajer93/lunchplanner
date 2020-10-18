@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
+import Button from "#/components/atoms/Button";
 import Login from "#/components/pages/Login";
+
+const ERROR_MESSAGE_TIMEOUT_MILLISEC = 5000;
 
 const handleLogin = (form) => {
   const { email, password } = form || {};
@@ -13,7 +16,7 @@ const handleLogin = (form) => {
         retcode: 200,
       });
     } else {
-      reject({ retcode: 400 });
+      reject({ retcode: 400, message: 'Your email or password was incorrect' });
     }
   });
 };
@@ -43,6 +46,11 @@ const initialSessionData = {
 
 const Authentication = ({ children }) => {
   const [sessionData, setSessionData] = useState(initialSessionData);
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const errorMessageTimeout = () => setTimeout(() => {
+    setErrorMsg('');
+  }, ERROR_MESSAGE_TIMEOUT_MILLISEC);
 
   const onLogin = async (form) => {
     try {
@@ -50,7 +58,8 @@ const Authentication = ({ children }) => {
       console.log(response);
       setSessionData(response);
     } catch (e) {
-      console.log(e);
+      setErrorMsg(e.message);
+      errorMessageTimeout();
     }
   };
 
@@ -59,9 +68,12 @@ const Authentication = ({ children }) => {
       const response = await handleRegister(form);
       console.log(response);
     } catch (e) {
-      console.log(e);
+      setErrorMsg(e.message);
+      errorMessageTimeout();
     }
   };
+
+  const onLogout = () => setSessionData(initialSessionData);
 
   const loginProps = {
     onLogin,
@@ -69,10 +81,19 @@ const Authentication = ({ children }) => {
   };
 
   if (!sessionData.token) {
-    return <Login {...loginProps} />;
+    return (
+      <div>
+        <Login {...loginProps} error={errorMsg} />
+      </div>
+    );
   }
 
-  return children;
+  return (
+    <div>
+      {children}
+      <Button title="Logout" onClick={onLogout} />
+    </div>
+  );
 };
 
 export default Authentication;

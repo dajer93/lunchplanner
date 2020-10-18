@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Button from "#/components/atoms/Button";
 import AuthTemplate from "#/components/templates/AuthTemplate";
 
-const Login = ({ onLogin, onRegister }) => {
+const Login = ({ error, onLogin, onRegister }) => {
   const [isRegistration, setIsRegistration] = useState(false);
 
   const showRegistration = () => setIsRegistration(true);
@@ -19,6 +19,7 @@ const Login = ({ onLogin, onRegister }) => {
     <div style={{ display: "block" }}>
       <div>
         <AuthTemplate {...authTemplateProps} />
+        {error && (<div style={{ color: 'red' }}>{error}</div>)}
       </div>
       <div>
         --- or ---
