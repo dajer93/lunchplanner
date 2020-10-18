@@ -1,7 +1,6 @@
-import React, { useRef, useState } from "react";
-import "#/App.css";
+import React, { useState } from "react";
 
-import Form from '#/components/molecules/Form';
+import Form from '#/components/molecules/Form/Form';
 
 import IngredientsList from '../molecules/IngredientsList';
 

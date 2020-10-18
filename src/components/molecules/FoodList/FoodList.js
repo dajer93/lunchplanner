@@ -1,7 +1,7 @@
 import React from "react";
 import "#/App.css";
 
-import Food from "./Food";
+import Food from "#/components/molecules/Food";
 
 import "./foodList.css";
 

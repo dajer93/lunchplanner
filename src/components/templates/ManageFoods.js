@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import FoodList from "#/components/molecules/FoodList";
+import FoodList from "#/components/molecules/FoodList/FoodList";
 import AddFood from "#/components/organisms/AddFood";
 
 const initialFoods = [
