@@ -22,9 +22,6 @@ const Login = ({ error, onLogin, onRegister }) => {
         {error && (<div style={{ color: 'red' }}>{error}</div>)}
       </div>
       <div>
-        --- or ---
-      </div>
-      <div>
         {!isRegistration && (
           <Button title="Register" onClick={showRegistration} />
         )}

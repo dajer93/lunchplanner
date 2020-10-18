@@ -1,51 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { connect } from 'react-redux';
 
 import Button from "#/components/atoms/Button";
 import Login from "#/components/pages/Login";
+import { login, register, getErrorMessage as getAuthErrorMessage } from '#/services/authentication';
+import { saveSessionData, loadSessionData, emptySessionData } from '#/services/storage';
+import { sessionLogin, sessionLogout } from '#/redux/store';
 
 const ERROR_MESSAGE_TIMEOUT_MILLISEC = 5000;
 
-const handleLogin = (form) => {
-  const { email, password } = form || {};
-  return new Promise((fulfill, reject) => {
-    if (email === "dajer" && password === "asd") {
-      fulfill({
-        email: "dajer",
-        token: "qwe123",
-        loggedIn: Date.now(),
-        retcode: 200,
-      });
-    } else {
-      reject({ retcode: 400, message: 'Your email or password was incorrect' });
-    }
-  });
-};
-
-const handleRegister = (form) => {
-  const { username, password } = form || {};
-  return new Promise((fulfill, reject) => {
-    if (username === "dajer" && password === "asd") {
-      fulfill({
-        username: "dajer",
-        token: null,
-        loggedIn: Date.now(),
-        retcode: 200,
-      });
-    } else {
-      reject({ retcode: 400 });
-    }
-  });
-};
-
-const initialSessionData = {
-  username: "",
-  token: null,
-  loggedIn: null,
-  retcode: null,
-};
-
-const Authentication = ({ children }) => {
-  const [sessionData, setSessionData] = useState(initialSessionData);
+const Authentication = ({ children, sessionData, sessionLogin, sessionLogout }) => {
   const [errorMsg, setErrorMsg] = useState('');
 
   const errorMessageTimeout = () => setTimeout(() => {
@@ -54,26 +18,46 @@ const Authentication = ({ children }) => {
 
   const onLogin = async (form) => {
     try {
-      const response = await handleLogin(form);
+      const response = await login(form);
       console.log(response);
-      setSessionData(response);
+      sessionLogin(response);
+      saveSessionData(response);
     } catch (e) {
-      setErrorMsg(e.message);
+      setErrorMsg(getAuthErrorMessage(e));
       errorMessageTimeout();
+      sessionLogout();
     }
   };
 
   const onRegister = async (form) => {
     try {
-      const response = await handleRegister(form);
+      /* TODO */
+      const response = await register(form);
       console.log(response);
     } catch (e) {
-      setErrorMsg(e.message);
+      setErrorMsg(getAuthErrorMessage(e));
       errorMessageTimeout();
     }
   };
 
-  const onLogout = () => setSessionData(initialSessionData);
+  const onLogout = () => {
+    sessionLogout();
+    emptySessionData();
+  }
+
+  const loadSessionFromStorage = useCallback(async () => {
+    const sessionData = await loadSessionData() || {};
+
+    console.log(sessionData);
+
+    if (sessionData.token) {
+      sessionLogin(sessionData);
+    }
+  }, [sessionLogin])
+
+  useEffect(() => {
+    loadSessionFromStorage();
+  }, [loadSessionFromStorage])
 
   const loginProps = {
     onLogin,
@@ -96,4 +80,13 @@ const Authentication = ({ children }) => {
   );
 };
 
-export default Authentication;
+const mapStateToProps = state => ({
+  sessionData: state.sessionData
+});
+
+const mapDispatchToProps = {
+  sessionLogin,
+  sessionLogout
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Authentication);

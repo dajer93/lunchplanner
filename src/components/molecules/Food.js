@@ -27,7 +27,7 @@ const Food = ({
     <div
       ref={drag}
       style={style}
-      className={isDragging && 'isDragging'}
+      className={isDragging ? 'isDragging' : ''}
     >
       <div style={{ fontWeight: 'bold' }}>{name}</div>
       {useDescription && <div>{description}</div>}

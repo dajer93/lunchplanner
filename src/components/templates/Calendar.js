@@ -11,13 +11,13 @@ const TYPES = {
 
 const DAY_IN_MILLISECONDS = 24 * 60 * 60 * 1000;
 const DAYS_OF_THE_WEEK = [
-  "vasárnap",
-  "hétfő",
-  "kedd",
-  "szerda",
-  "csütörtök",
-  "péntek",
-  "szombat",
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
 ];
 
 const getDaysOfCurrentWeek = () => {
@@ -59,7 +59,7 @@ const Calendar = () => {
 
   return (
     <div className="calendar">
-      <h3>Naptár</h3>
+      <h3>Calendar</h3>
       <div className="week">
         {week.map((day, index) => (
           <CalendarDay
@@ -80,7 +80,7 @@ const CalendarDay = ({ date, foods, onRemoveFood, updateCalendarDay }) => {
     accept: TYPES.FOOD,
     canDrop: () => true,
     drop: (item, monitor) => {
-      console.log({ item, monitor });
+      console.log({ item, monitor, canDrop, isOver });
       updateCalendarDay(item, date);
     },
     collect: (monitor) => ({
@@ -91,7 +91,7 @@ const CalendarDay = ({ date, foods, onRemoveFood, updateCalendarDay }) => {
 
   return (
     <div className="date">
-      <span>{date.getDate()}</span>
+      <span>{`${date.getDate()}.`}</span>
       <span style={{ borderBottom: "1px solid gray" }}>
         {DAYS_OF_THE_WEEK[date.getDay()]}
       </span>

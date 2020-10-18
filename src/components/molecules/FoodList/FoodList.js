@@ -7,7 +7,7 @@ import "./foodList.css";
 
 const FoodList = ({ foods, style }) => (
   <div style={style} className="list">
-    <h3>Receptjeied</h3>
+    <h3>Your recipes</h3>
     {foods.map((food, index) => (
       <Food
         style={{

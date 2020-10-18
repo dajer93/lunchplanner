@@ -8,8 +8,8 @@ const LoginForm = ({ onLogin, style }) => {
       <h2>Log in to your account</h2>
       <Form
         fields={[
-          { name: "email", title: "Email" },
-          { name: "password", title: "Password" },
+          { name: "email", title: "Email", type: "email" },
+          { name: "password", title: "Password", type: "password" },
         ]}
         onSubmit={onLogin}
         submitButton="Login"

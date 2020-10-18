@@ -1,20 +1,18 @@
 import React from "react";
-import "#/App.css";
-
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { DndProvider } from "react-dnd";
+import { Provider } from "react-redux";
 
 import Planner from "#/components/pages/Planner";
 import Authenticate from "#/containers/Authenticate";
+import store from "#/redux/store";
 
-const App = () => {
-  return (
-    <DndProvider backend={HTML5Backend}>
-      <Authenticate>
-        <Planner />
-      </Authenticate>
-    </DndProvider>
-  );
-};
+import "#/App.css";
+
+const App = () => (
+  <Provider store={store}>
+    <Authenticate>
+      <Planner />
+    </Authenticate>
+  </Provider>
+);
 
 export default App;

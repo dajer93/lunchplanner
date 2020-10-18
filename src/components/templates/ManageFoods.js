@@ -29,7 +29,6 @@ const ManageFoods = () => {
 
   const addFood = (food) => setFoods([...foods, food]);
 
-  console.log(foods);
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       <AddFood style={{ width: '50%' }} addFood={addFood} />

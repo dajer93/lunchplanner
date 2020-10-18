@@ -21,7 +21,7 @@ const AddFood = ({ addFood, style }) => {
 
   return (
     <div style={style}>
-      <h3>Recept hozzáadása</h3>
+      <h3>Add recipe</h3>
       <Form
         fields={[
           { name: "name", value: "Food name", title: "Étel neve" },

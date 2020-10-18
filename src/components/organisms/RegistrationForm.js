@@ -1,17 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Form from "#/components/molecules/Form/Form";
 
 const RegistrationForm = ({ onRegister, style }) => {
+  const [isRegistered, setIsRegistered] = useState(false);
+
+  if (isRegistered) {
+    return (
+      <div style={style}>
+        <h2>Thank you</h2>
+        <p>Now you can log in to your account</p>
+      </div>
+    );
+  }
+
+  const handleRegister = data => {
+    setIsRegistered(true);
+    onRegister(data);
+  }
+
   return (
     <div style={style}>
       <h2>Register to lunchplanner</h2>
       <Form
         fields={[
-          { name: "email", title: "Email" },
-          { name: "password", title: "Password" },
+          { name: "username", title: "Name" },
+          { name: "email", title: "Email", type: "email" },
+          { name: "password", title: "Password", type: "password" },
         ]}
-        onSubmit={onRegister}
+        onSubmit={handleRegister}
         submitButton="Register"
       />
     </div>
