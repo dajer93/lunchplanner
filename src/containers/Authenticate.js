@@ -5,7 +5,7 @@ import Button from "#/components/atoms/Button";
 import Login from "#/components/pages/Login";
 import { login, register, getErrorMessage as getAuthErrorMessage } from '#/services/authentication';
 import { saveSessionData, loadSessionData, emptySessionData } from '#/services/storage';
-import { sessionLogin, sessionLogout } from '#/redux/store';
+import { sessionLogin, sessionLogout } from '#/redux/actions/session';
 
 const ERROR_MESSAGE_TIMEOUT_MILLISEC = 5000;
 
@@ -32,8 +32,7 @@ const Authentication = ({ children, sessionData, sessionLogin, sessionLogout }) 
   const onRegister = async (form) => {
     try {
       /* TODO */
-      const response = await register(form);
-      console.log(response);
+      await register(form);
     } catch (e) {
       setErrorMsg(getAuthErrorMessage(e));
       errorMessageTimeout();
@@ -81,7 +80,7 @@ const Authentication = ({ children, sessionData, sessionLogin, sessionLogout }) 
 };
 
 const mapStateToProps = state => ({
-  sessionData: state.sessionData
+  sessionData: state.session.sessionData
 });
 
 const mapDispatchToProps = {

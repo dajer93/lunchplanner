@@ -1,40 +1,12 @@
-import { createStore, applyMiddleware } from "redux";
-import thunk from 'redux-thunk';
+import { combineReducers, createStore, applyMiddleware } from "redux";
+import logger from 'redux-logger'
 
-const TYPES = {
-  SESSION_LOGIN: 'SESSION/LOGIN_',
-  SESSION_LOGOUT: 'SESSION/LOGOUT',
-}
+import session from './reducers/session';
+import foods from './reducers/foods';
 
-const initialState = {
-  sessionData: {
-    username: null,
-    token: null,
-    loggedIn: null
-  }
-};
-
-export const sessionLogin = payload => ({
-  type: TYPES.SESSION_LOGIN,
-  payload
-});
-
-export const sessionLogout = () => ({
-  type: TYPES.SESSION_LOGOUT
+const rootReducer = combineReducers({
+  session,
+  foods
 })
 
-function reducer(state = initialState, action) {
-  switch(action.type) {
-    case TYPES.SESSION_LOGIN:
-      return {
-        ...state,
-        sessionData: action.payload
-      };
-    case TYPES.SESSION_LOGOUT:
-      return initialState;
-    default:
-      return state;
-  }
-}
-
-export default createStore(reducer, applyMiddleware(thunk));;
+export default createStore(rootReducer, applyMiddleware(logger));
