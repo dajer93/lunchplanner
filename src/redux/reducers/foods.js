@@ -1,30 +1,13 @@
-import { ADD_FOOD } from '../actionTypes';
+import { ADD_FOOD, LOAD_FOODS } from '../actionTypes';
 
-const initialState = [
-  {
-    name: "Csirkepöri",
-    description: "Klasszikus...",
-    ingredients: [
-      { ingredient: "50dkg csirkehús" },
-      { ingredient: "csipetnyi só" },
-      { ingredient: "olaj" },
-    ],
-  },
-  {
-    name: "Húsleves",
-    description: "blabla",
-    ingredients: [
-      { ingredient: "50dkg csirkehús" },
-      { ingredient: "csipetnyi só" },
-      { ingredient: "olaj" },
-    ],
-  }
-];
+const initialState = [];
 
 export default (state = initialState, action) => {
   switch(action.type) {
     case ADD_FOOD:
       return [...state, action.payload];
+    case LOAD_FOODS:
+      return action.payload;
     default:
       return state;
   }

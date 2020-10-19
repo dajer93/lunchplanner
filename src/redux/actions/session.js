@@ -1,10 +1,10 @@
 import { SESSION_LOGIN, SESSION_LOGOUT } from '../actionTypes';
 
-export const sessionLogin = payload => ({
+export const setSessionData = payload => ({
   type: SESSION_LOGIN,
   payload
 });
 
-export const sessionLogout = () => ({
+export const clearSessionData = () => ({
   type: SESSION_LOGOUT
 })

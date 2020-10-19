@@ -1,7 +1,6 @@
 import axios from "axios";
-import AxiosMockAdapter from "axios-mock-adapter";
 
-const mock = new AxiosMockAdapter(axios);
+import mock from './mock';
 
 mock.onPost("/auth/login").reply(200, {
   email: "dajer",
@@ -19,8 +18,6 @@ mock.onPost("/auth/register").reply(200, {
 
 export const login = async (form = {}) => {
   const { data = {} } = await axios.post("/auth/login", form);
-
-  console.log(data)
 
   return data;
 };

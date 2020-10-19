@@ -5,11 +5,11 @@ import Button from "#/components/atoms/Button";
 import Login from "#/components/pages/Login";
 import { login, register, getErrorMessage as getAuthErrorMessage } from '#/services/authentication';
 import { saveSessionData, loadSessionData, emptySessionData } from '#/services/storage';
-import { sessionLogin, sessionLogout } from '#/redux/actions/session';
+import { setSessionData, clearSessionData } from '#/redux/actions/session';
 
 const ERROR_MESSAGE_TIMEOUT_MILLISEC = 5000;
 
-const Authentication = ({ children, sessionData, sessionLogin, sessionLogout }) => {
+const Authentication = ({ children, sessionData, setSessionData, clearSessionData }) => {
   const [errorMsg, setErrorMsg] = useState('');
 
   const errorMessageTimeout = () => setTimeout(() => {
@@ -18,14 +18,14 @@ const Authentication = ({ children, sessionData, sessionLogin, sessionLogout }) 
 
   const onLogin = async (form) => {
     try {
-      const response = await login(form);
-      console.log(response);
-      sessionLogin(response);
-      saveSessionData(response);
+      const data = await login(form);
+
+      setSessionData(data);
+      saveSessionData(data);
     } catch (e) {
       setErrorMsg(getAuthErrorMessage(e));
       errorMessageTimeout();
-      sessionLogout();
+      clearSessionData();
     }
   };
 
@@ -40,19 +40,22 @@ const Authentication = ({ children, sessionData, sessionLogin, sessionLogout }) 
   };
 
   const onLogout = () => {
-    sessionLogout();
+    clearSessionData();
     emptySessionData();
   }
 
   const loadSessionFromStorage = useCallback(async () => {
-    const sessionData = await loadSessionData() || {};
-
-    console.log(sessionData);
-
-    if (sessionData.token) {
-      sessionLogin(sessionData);
+    try {
+      const sessionData = await loadSessionData() || {};
+  
+      if (sessionData.token) {
+        setSessionData(sessionData);
+      }
+    } catch(e) {
+      setErrorMsg(getAuthErrorMessage(e));
+      errorMessageTimeout();
     }
-  }, [sessionLogin])
+  }, [setSessionData])
 
   useEffect(() => {
     loadSessionFromStorage();
@@ -84,8 +87,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  sessionLogin,
-  sessionLogout
+  setSessionData,
+  clearSessionData
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Authentication);
