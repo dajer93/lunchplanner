@@ -4,13 +4,13 @@ import { connect } from "react-redux";
 import FoodList from "#/components/molecules/FoodList/FoodList";
 // import ErrorMessage from "#/components/molecules/ErrorMessage";
 import AddFood from "#/components/organisms/AddFood";
-import { addFood, loadFoods } from "#/redux/actions/foods";
-import { getFoods, getErrorMessage } from "#/services/api";
+import { saveFood, loadFoods, getErrorMessage } from "#/services/api";
 
-const ManageFoods = ({ loadFoods, addFood, foods }) => {
+const ManageFoods = ({ loadFoods, saveFood, foods }) => {
   const onAddFood = (form) => {
     try {
-      addFood(form);
+      saveFood(form);
+      // saveFood(form);
     } catch (e) {
       console.log(getErrorMessage(e));
     }
@@ -18,11 +18,7 @@ const ManageFoods = ({ loadFoods, addFood, foods }) => {
 
   const fetchFoods = useCallback(async () => {
     try {
-      const foods = (await getFoods()) || [];
-
-      if (foods.length) {
-        loadFoods(foods);
-      }
+      await loadFoods();
     } catch(e) {
       console.dir(e);
     }
@@ -45,7 +41,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  addFood,
+  saveFood,
   loadFoods
 };
 

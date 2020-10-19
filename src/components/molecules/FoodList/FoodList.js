@@ -5,7 +5,7 @@ import Food from "#/components/molecules/Food";
 
 import "./foodList.css";
 
-const FoodList = ({ foods, style }) => (
+const FoodList = ({ foods = [], style }) => (
   <div style={style} className="list">
     <h3>Your recipes</h3>
     {foods.map((food, index) => (

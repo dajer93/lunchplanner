@@ -5,7 +5,7 @@ export const addFood = payload => ({
   payload
 });
 
-export const loadFoods = payload => ({
+export const setFoods = payload => ({
   type: LOAD_FOODS,
   payload
 });
