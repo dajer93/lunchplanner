@@ -25,11 +25,21 @@
   }
 
   &.secondary {
-    color: $secondaryButtonTextColor;
-    background-color: $secondaryButtonBgColor;
+    color: $secondaryButtonBgColor;
+    background-color: transparent;
 
     &:hover {
-      background-color: $secondaryButtonBgHoverColor;
+      background-color: transparent;
+      text-decoration: underline;
+    }
+  }
+
+  &.delete {
+    background-color: $deleteButtonBgColor;
+    color: $deleteButtonTextColor;
+
+    &:hover {
+      background-color: $deleteButtonBgHoverColor;
     }
   }
 }

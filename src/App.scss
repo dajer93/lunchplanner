@@ -1,5 +1,5 @@
 $grapefruit: #FF1654;
-$lightgrapefruit: #FFEBF0;
+$lightgrapefruit: #FF5C87;
 $orange: #FF9B42;
 $darkblue: #001f29;
 $lightlemon: #F3FFBD;
@@ -31,6 +31,11 @@ $buttonBgHoverColor: $aquablue;
 $secondaryButtonTextColor: $brightlemon;
 $secondaryButtonBgColor: $pastelgreen;
 $secondaryButtonBgHoverColor: $lightpastelgreen;
+
+// DELETE BUTTON
+$deleteButtonTextColor: $brightlemon;
+$deleteButtonBgColor: $grapefruit;
+$deleteButtonBgHoverColor: $lightgrapefruit;
 
 // TEXT
 $textColor: $darkblue;
