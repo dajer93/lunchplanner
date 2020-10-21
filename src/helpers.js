@@ -14,7 +14,7 @@ export const getDaysOfCurrentWeek = () => {
 
 export const recipes = [
   {
-    name: "Csirkepöri",
+    name: "Csirkepöri galuskával",
     description: "Klasszikus...",
     ingredients: [
       { ingredient: "50dkg csirkehús" },

@@ -41,4 +41,12 @@
   & .calendarDate {
     margin-bottom: $spacingSmall;
   }
+
+  & .recipe span {
+    white-space: nowrap;
+    width: 150px;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+  }
 }

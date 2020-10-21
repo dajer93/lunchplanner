@@ -1,3 +1,32 @@
-.smallSpacing .recipe {
+@import "#/App.scss";
+
+.titleOnlyRecipe .recipe {
   margin: 2px 0;
+
+  &:hover {
+    & span {
+      width: 110px;
+    }
+    & .titleOnlyRecipeRemove {
+      display: inline;
+    }
+  }
+
+  & .titleOnlyRecipeRemove {
+    display: none;
+    width: auto;
+    position: absolute;
+    top: 8px;
+    right: 0;
+    margin-top: 4px;
+    padding-top: 0;
+  }
+
+  & span {
+    white-space: nowrap;
+    width: 180px;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+  }
 }

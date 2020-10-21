@@ -42,4 +42,14 @@
       background-color: $deleteButtonBgHoverColor;
     }
   }
+
+  &.secondaryDelete {
+    background-color: $secondaryDeleteButtonBgColor;
+    color: $secondaryDeleteButtonTextColor;
+
+    &:hover {
+      background-color: $secondaryDeleteButtonBgHoverColor;
+      text-decoration: underline;
+    }
+  }
 }

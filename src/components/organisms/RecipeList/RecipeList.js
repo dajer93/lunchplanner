@@ -6,7 +6,14 @@ import Recipe from "#/components/molecules/Recipe";
 
 import "./styles.scss";
 
-const RecipeList = ({ className = "", foods = [], setIsAddFood, style, onRemoveFood }) => (
+const RecipeList = ({
+  removeButtonStyle = "",
+  className = "",
+  foods = [],
+  setIsAddFood,
+  style,
+  onRemoveFood,
+}) => (
   <div className={`recipeList ${className}`}>
     <div className="header">
       <Text className="headerText" type="h2">
@@ -16,7 +23,14 @@ const RecipeList = ({ className = "", foods = [], setIsAddFood, style, onRemoveF
     </div>
     <div className="body">
       {foods.map((food, index) => (
-        <Recipe {...food} id={`food-${index}`} key={`food-${index}`} onRemove={() => onRemoveFood(food)} useRemoveButton />
+        <Recipe
+          {...food}
+          removeButtonStyle={removeButtonStyle}
+          id={`food-${index}`}
+          key={`food-${index}`}
+          onRemove={() => onRemoveFood(food)}
+          useRemoveButton
+        />
       ))}
     </div>
   </div>
