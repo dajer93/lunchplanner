@@ -1,11 +1,11 @@
 import React from "react";
 
-import './styles.css';
+import './styles.scss';
 
 const List = ({ className="", items = [] }) => (
   <div className={`list ${className}`}>
-    {items.map(({ item }, index) => (
-      <div className="listItem" key={index}>{item}</div>
+    {items.map(({ title } = {}, index) => (
+      <div className="listItem" key={index}>{title}</div>
     ))}
   </div>
 );

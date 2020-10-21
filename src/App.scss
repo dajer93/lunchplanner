@@ -1,0 +1,61 @@
+$grapefruit: #FF1654;
+$lightgrapefruit: #FFEBF0;
+$orange: #FF9B42;
+$darkblue: #001f29;
+$lightlemon: #F3FFBD;
+$brightlemon: #FBFFEB;
+$aquablue: #B2DBBF;
+$aqua: #74BE8C;
+$lightpastelgreen: #89948A;
+$pastelgreen: #464E47;
+
+// FONT SIZES
+$fontSizeXs: 12px;
+$fontSizeSm: 14px;
+$fontSize: 16px;
+$fontSizeLg: 18px;
+
+// BORDER RADIUSES
+$radiusSm: 3px;
+$radius: 4px;
+$radiusLg: 5px;
+
+// BUTTON
+$buttonTextColor: $darkblue;
+$buttonBgColor: $aqua;
+$buttonBorderColor: transparent;
+$buttonBorderHoverColor: $aqua;
+$buttonBgHoverColor: $aquablue;
+
+// SECONDARY BUTTON
+$secondaryButtonTextColor: $brightlemon;
+$secondaryButtonBgColor: $pastelgreen;
+$secondaryButtonBgHoverColor: $lightpastelgreen;
+
+// TEXT
+$textColor: $darkblue;
+$textH3FontSize: 18px;
+
+// INPUT
+$inputBorder: $aquablue;
+$inputBorderWidth: 1px;
+$inputFocusedOutlineColor: $lightpastelgreen; 
+
+// SPACING
+$spacingSmall: 8px;
+$spacingMedium: 10px;
+$spacingLarge: 20px;
+$spacingExtraLarge: 40px;
+
+html {
+  background: $brightlemon;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+
+  .column {
+    margin: 20px 18px;
+  }
+}

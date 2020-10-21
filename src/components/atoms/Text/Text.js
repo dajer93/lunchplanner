@@ -1,5 +1,5 @@
 import React from "react";
 
-import './styles.css';
+import './styles.scss';
 
-export default ({ type = "basic", children }) => <span className={type}>{children}</span>;
+export default ({ className = "", type = "basic", children }) => <span className={`text ${type} ${className}`}>{children}</span>;

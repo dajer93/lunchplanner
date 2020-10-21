@@ -1,0 +1,26 @@
+@import '#/App.scss';
+
+.recipeList {
+  & .header {
+    margin-top: $spacingMedium;
+    margin-bottom: $spacingLarge;
+
+    & .headerText {
+      width: auto;
+      display: inline;
+      margin-right: $spacingMedium;
+    }
+
+    & .addButton {
+      width: auto;
+      display: inline;
+      margin: 0;
+    }
+  }
+
+  & .body {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+  }
+}

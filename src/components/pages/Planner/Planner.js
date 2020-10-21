@@ -3,18 +3,18 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 
 import Calendar from "#/components/templates/Calendar";
-import ManageRecipes from "#/containers/ManageRecipes";
+import ManageRecipes from "#/components/templates/ManageRecipes";
 
-import "./planner.css";
+import "./styles.scss";
 
 const Planner = () => {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="container">
-        <div className="column">
+        <div className="recipes">
           <ManageRecipes />
         </div>
-        <div className="column">
+        <div className="calendar">
           <Calendar />
         </div>
       </div>

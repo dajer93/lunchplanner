@@ -1,0 +1,17 @@
+@import '#/App.scss';
+
+.recipe {
+  display: block;
+  padding: 10px 12px;
+  margin: $spacingSmall 0;
+  font-size: $fontSizeXs;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: .2s ease all;
+  border-radius: $radiusSm;
+
+  &:hover {
+    border: 1px solid $lightpastelgreen;
+    box-shadow: 2px 4px 8px rgba($pastelgreen, .2);
+  }
+}

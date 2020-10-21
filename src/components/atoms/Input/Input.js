@@ -1,11 +1,11 @@
 import React, { forwardRef } from "react";
 import Text from "#/components/atoms/Text";
 
-import "./styles.css";
+import "./styles.scss";
 
 const Input = (
   {
-    className="",
+    className = "",
     name,
     onChange,
     onFocus,
@@ -19,32 +19,36 @@ const Input = (
 ) => {
   switch (type) {
     case "textarea":
-      return <div className={`input ${type} ${className}`}>
-        {useLabel && <Text className="title">{title}</Text>}
-        <textarea
-          ref={ref}
-          type={type}
-          name={name}
-          onChange={onChange}
-          onFocus={onFocus}
-          onKeyDown={onKeyDown}
-          value={value}
-        />
-      </div>;
+      return (
+        <div className={`input ${type} ${className}`}>
+          <textarea
+            ref={ref}
+            type={type}
+            name={name}
+            onChange={onChange}
+            onFocus={onFocus}
+            onKeyDown={onKeyDown}
+            value={value}
+          />
+          {useLabel && !value && <Text className="label">{title}</Text>}
+        </div>
+      );
 
     default:
-      return <div className={`input ${type} ${className}`}>
-        {useLabel && <Text className="title">{title}</Text>}
-        <input
-          ref={ref}
-          type={type}
-          name={name}
-          onChange={onChange}
-          onFocus={onFocus}
-          onKeyDown={onKeyDown}
-          value={value}
-        />
-      </div>;
+      return (
+        <div className={`input ${type} ${className}`}>
+          <input
+            ref={ref}
+            type={type}
+            name={name}
+            onChange={onChange}
+            onFocus={onFocus}
+            onKeyDown={onKeyDown}
+            value={value}
+          />
+          {useLabel && !value && <Text className="label">{title}</Text>}
+        </div>
+      );
   }
 };
 

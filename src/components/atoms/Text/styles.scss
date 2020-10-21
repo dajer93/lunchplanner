@@ -1,0 +1,21 @@
+@import '#/App.scss';
+
+.text {
+  font-family: 'Roboto', sans-serif;
+  font-size: $fontSize;
+  color: $textColor;
+
+  &.h3 {
+    display: block;
+    font-weight: bold;
+    font-size: $fontSize;
+    margin-bottom: 18px;
+  }
+
+  &.h2 {
+    display: block;
+    font-weight: bold;
+    font-size: $fontSizeLg;
+    margin-bottom: 18px;
+  }
+};

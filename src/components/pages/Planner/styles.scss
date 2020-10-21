@@ -1,0 +1,18 @@
+@import '#/App.scss';
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.recipes {
+  width: 300px;
+  margin-right: $spacingMedium;
+  border-right: 1px solid $lightpastelgreen;
+}
+
+.calendar {
+  width: 100%;
+}

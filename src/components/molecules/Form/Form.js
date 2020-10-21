@@ -16,6 +16,11 @@ const Form = ({ children, className, fields, onSubmit, submitButton }) => {
   };
 
   const onClickSubmit = () => {
+    console.log(form);
+    if (!form) {
+      console.log("TODO: no response on empty form");
+      return;
+    }
     onSubmit(form);
     setForm({});
   };

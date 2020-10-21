@@ -5,13 +5,14 @@ import Button from '#/components/atoms/Button';
 import Text from '#/components/atoms/Text';
 import List from "#/components/atoms/List";
 
-import './styles.css';
+import './styles.scss';
 
 const TYPES = {
   FOOD: "food",
 };
 
-const Food = ({
+const Recipe = ({
+  className = "",
   description,
   name,
   ingredients = [],
@@ -31,14 +32,14 @@ const Food = ({
     <div
       ref={drag}
       style={style}
-      className={isDragging ? 'isDragging' : ''}
+      className={`recipe ${className} ${isDragging ? 'isDragging' : ''}`}
     >
       <Text type="h4">{name}</Text>
       {useDescription && <Text type="paragraph">{description}</Text>}
-      {useIngredientsList && <List items={ingredients} />}
-      {useRemoveButton && <Button onClick={onRemove}>Remove</Button> }
+      {useIngredientsList && <List items={ingredients.map(item => ({ ...item, title: item.ingredient }))} />}
+      {useRemoveButton && <Button className="secondary sm" onClick={onRemove}>Remove</Button> }
     </div>
   );
 };
 
-export default Food;
+export default Recipe;

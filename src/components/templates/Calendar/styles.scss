@@ -1,0 +1,44 @@
+@import '#/App.scss';
+
+.calendar {
+  & .week {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  & .date {
+    width: 13%;
+    min-height: 200px;
+
+    & .container {
+      position: relative;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+
+      & .calendarRecipe {
+        box-sizing: border-box;
+        width: 100%;
+      }
+    }
+  }
+
+  & .date span {
+    display: block;
+    text-align: center;
+  }
+
+  & .calendar-title {
+    padding: 8px 0;
+  }
+
+  & .calendarDay {
+    padding-bottom: $spacingSmall;
+    border-bottom: 1px solid $lightpastelgreen;
+  }
+
+  & .calendarDate {
+    margin-bottom: $spacingSmall;
+  }
+}

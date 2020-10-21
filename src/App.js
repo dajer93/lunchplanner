@@ -5,7 +5,7 @@ import Planner from "#/components/pages/Planner";
 import Authenticate from "#/containers/Authenticate";
 import store from "#/redux/store";
 
-import "#/App.css";
+import "#/App.scss";
 
 const App = () => (
   <Provider store={store}>

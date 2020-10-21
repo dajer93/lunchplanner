@@ -1,0 +1,35 @@
+@import '#/App.scss';
+
+.input {
+  position: relative;
+  width: 100%;
+
+  & input {
+    box-sizing: border-box;
+    width: 100%;
+    display: block;
+    margin: 8px 0;
+    padding: 0.8em 0.4em;
+    font-family: "Roboto", sans-serif;
+    font-size: $fontSize;
+    color: $darkblue;
+    border-radius: 3px;
+    border: $inputBorderWidth solid $inputBorder;
+
+    &:focus {
+      outline: 2px solid $inputFocusedOutlineColor;
+    }
+
+    &:focus + .label {
+      display: none;
+    }
+  }
+
+  .label {
+    position: absolute;
+    top: 14px;
+    left: 8px;
+    font-size: $fontSize;
+    pointer-events: none;
+  }
+}

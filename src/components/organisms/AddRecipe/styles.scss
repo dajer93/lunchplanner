@@ -1,0 +1,41 @@
+@import '#/App.scss';
+
+.addRecipe {
+  margin-right: $spacingMedium;
+
+  & .addItem {
+    position: relative;
+    
+    & button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: transparent;
+      width: 100px;
+      color: $aquablue;
+      margin: 2px 0 0;
+      
+      &:hover {
+        color: $buttonBgHoverColor;
+        background-color: transparent;
+      }
+    }
+  }
+
+  & .header {
+    margin-bottom: $spacingMedium;
+    margin-top: $spacingMedium;
+
+    & .headerText {
+      width: auto;
+      display: inline;
+      margin-right: $spacingMedium;
+    }
+
+    & .addButton {
+      width: auto;
+      display: inline;
+      margin: 0;
+    }
+  }
+}
