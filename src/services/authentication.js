@@ -28,8 +28,8 @@ export const register = (form = {}) => {
   return data;
 };
 
-export const getErrorMessage = (error) => {
-  const { response: { status } } = error;
+export const getErrorMessage = (error = {}) => {
+  const { response: { status } = {} } = error;
 
   switch(status) {
     case 400: {

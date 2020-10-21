@@ -22,7 +22,7 @@ const Login = ({ error, onLogin, onRegister }) => {
         )}
         {error && <div style={{ color: "red" }}>{error}</div>}
       </div>
-      <div class="alternatives">
+      <div className="alternatives">
         {!isRegistration && (
           <Button className="secondary sm" title="Register to lunchplanner" onClick={showRegistration} />
         )}

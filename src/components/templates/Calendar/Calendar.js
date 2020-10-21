@@ -1,54 +1,38 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect } from "react";
+import { connect } from "react-redux";
 
-import Text from "#/components/atoms/Text";
+import CalendarDay from "./CalendarDay";
+import { loadCalendar, updateCalendar, removeRecipeFromDay } from "#/services/api";
 
-import CalendarDay from './CalendarDay';
-import { DAY_IN_MILLISECONDS} from './constants';
 import "./styles.scss";
 
-const getDaysOfCurrentWeek = () => {
-  let week = [];
-  const date = new Date();
-  for (let i = 0; i < 7; i++) {
-    week.push({
-      date: new Date(date.getTime() + i * DAY_IN_MILLISECONDS),
-      foods: [],
-    });
-  }
-  return week;
-};
-
-const Calendar = () => {
-  const [week, setWeek] = useState(getDaysOfCurrentWeek());
-
-  const updateCalendarDay = (food, date) => {
-    const indexOfDay = week.findIndex((day) => day.date === date);
-    const newWeek = [...week];
-    newWeek[indexOfDay] = {
-      date: new Date(date.getTime()),
-      foods: [food],
-    };
-
-    setWeek(newWeek);
+const Calendar = ({ week = [], loadCalendar, removeRecipeFromDay, updateCalendar }) => {
+  const onUpdateCalendarDay = (food, date) => {
+    updateCalendar({ food, date });
   };
 
-  const onRemoveFood = (date) => {
-    const indexOfDay = week.findIndex((day) => day.date === date);
-    const newWeek = [...week];
-    newWeek[indexOfDay] = {
-      date: new Date(date.getTime()),
-      foods: [],
-    };
-
-    setWeek(newWeek);
+  const onRemoveFood = (food, date) => {
+    removeRecipeFromDay({ food, date });
   };
+
+  const fetchCalendar = useCallback(async () => {
+    try {
+      await loadCalendar();
+    } catch (e) {
+      console.dir(e);
+    }
+  }, [loadCalendar]);
+
+  useEffect(() => {
+    fetchCalendar();
+  }, [fetchCalendar]);
 
   return (
     <div className="calendar">
       <div className="week">
         {week.map((day, index) => (
           <CalendarDay
-            updateCalendarDay={updateCalendarDay}
+            updateCalendarDay={onUpdateCalendarDay}
             onRemoveFood={onRemoveFood}
             {...day}
             week={week}
@@ -60,4 +44,14 @@ const Calendar = () => {
   );
 };
 
-export default Calendar;
+const mapStateToProps = (state) => ({
+  week: state.calendar,
+});
+
+const mapDispatchToProps = {
+  updateCalendar,
+  removeRecipeFromDay,
+  loadCalendar
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
