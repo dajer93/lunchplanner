@@ -41,11 +41,18 @@ const AddFood = ({ addFood, className = "", setIsAddFood }) => {
       >
         <Form
           className="addItem"
-          fields={[{ name: "title", title: "Ingredients", useLabel: "true" }]}
+          fields={[
+            { name: "ingredient", title: "Ingredients", useLabel: "true" },
+          ]}
           onSubmit={onAddIngredient}
           submitButton="Enter"
         >
-          <List items={ingredients} />
+          <List
+            items={ingredients.map((item) => ({
+              ...item,
+              title: item.ingredient,
+            }))}
+          />
         </Form>
       </Form>
     </div>

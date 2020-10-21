@@ -11,6 +11,7 @@ const ManageRecipes = ({ loadFoods, saveFood, recipes }) => {
   const [isAddFood, setIsAddFood] = useState(false);
   const onAddFood = (form) => {
     try {
+      console.log(form);
       saveFood(form);
       setIsAddFood(false);
       // saveFood(form);
