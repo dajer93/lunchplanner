@@ -77,6 +77,7 @@ const Authentication = ({ children, sessionData, setSessionData, clearSessionDat
   return (
     <div>
       {children}
+      <Button className="logoutButton sm secondary" title="Logout" onClick={onLogout} />
     </div>
   );
 };
