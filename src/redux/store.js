@@ -3,11 +3,11 @@ import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 
 import session from './reducers/session';
-import foods from './reducers/foods';
+import recipes from './reducers/recipes';
 
 const rootReducer = combineReducers({
   session,
-  foods
+  recipes
 })
 
 export default createStore(rootReducer, applyMiddleware(...[logger, thunk]));

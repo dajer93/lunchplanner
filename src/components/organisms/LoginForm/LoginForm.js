@@ -1,6 +1,8 @@
 import React from "react";
 
-import Form from "#/components/molecules/Form/Form";
+import Form from "#/components/molecules/Form";
+
+import './styles.css';
 
 const LoginForm = ({ onLogin, style }) => {
   return (

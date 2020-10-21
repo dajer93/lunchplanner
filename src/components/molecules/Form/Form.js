@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import Button from '#/components/atoms/Button';
 import FormFields from './FormFields';
 
-const Form = ({ children, fields, onSubmit, submitButton }) => {
+import './styles.css';
+
+const Form = ({ children, className, fields, onSubmit, submitButton }) => {
   const [form, setForm] = useState();
 
   const onInput = ({ target }) => {
@@ -35,7 +37,7 @@ const Form = ({ children, fields, onSubmit, submitButton }) => {
   };
 
   return (
-    <div>
+    <div className={className}>
       <FormFields {...formFieldProps} />
       {children}
       <Button title={submitButton} onClick={onClickSubmit} />

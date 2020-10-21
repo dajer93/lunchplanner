@@ -1,12 +1,11 @@
 import React, { useEffect, useCallback } from "react";
 import { connect } from "react-redux";
 
-import FoodList from "#/components/molecules/FoodList/FoodList";
-// import ErrorMessage from "#/components/molecules/ErrorMessage";
-import AddFood from "#/components/organisms/AddFood";
+import RecipeList from "#/components/organisms/RecipeList";
+import AddRecipe from "#/components/organisms/AddRecipe";
 import { saveFood, loadFoods, getErrorMessage } from "#/services/api";
 
-const ManageFoods = ({ loadFoods, saveFood, foods }) => {
+const ManageRecipess = ({ loadFoods, saveFood, foods }) => {
   const onAddFood = (form) => {
     try {
       saveFood(form);
@@ -30,8 +29,8 @@ const ManageFoods = ({ loadFoods, saveFood, foods }) => {
 
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
-      <AddFood style={{ width: "50%" }} addFood={onAddFood} />
-      <FoodList style={{ width: "50%" }} foods={foods} />
+      <AddRecipe style={{ width: "50%" }} addFood={onAddFood} />
+      <RecipeList style={{ width: "50%" }} foods={foods} />
     </div>
   );
 };
@@ -45,4 +44,4 @@ const mapDispatchToProps = {
   loadFoods
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageFoods);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageRecipess);

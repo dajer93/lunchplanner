@@ -3,7 +3,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 
 import Calendar from "#/components/templates/Calendar";
-import ManageFoods from "#/containers/ManageFoods";
+import ManageRecipes from "#/containers/ManageRecipes";
 
 import "./planner.css";
 
@@ -12,7 +12,7 @@ const Planner = () => {
     <DndProvider backend={HTML5Backend}>
       <div className="container">
         <div className="column">
-          <ManageFoods />
+          <ManageRecipes />
         </div>
         <div className="column">
           <Calendar />

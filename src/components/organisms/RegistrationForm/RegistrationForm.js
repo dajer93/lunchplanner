@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
-import Form from "#/components/molecules/Form/Form";
+import Form from "#/components/molecules/Form";
+
+import './styles.css';
 
 const RegistrationForm = ({ onRegister, style }) => {
   const [isRegistered, setIsRegistered] = useState(false);

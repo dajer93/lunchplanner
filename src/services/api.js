@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { addFood, setFoods } from "#/redux/actions/foods";
+import { addFood, setFoods } from "#/redux/actions/recipes";
 
 import mock from "./mock";
 

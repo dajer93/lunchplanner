@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useDrop } from "react-dnd";
 
-import Food from "#/components/molecules/Food";
+import Text from '#/components/atoms/Text';
+import Recipe from "#/components/molecules/Recipe";
 
-import "./calendar.css";
+import "./styles.css";
 
 const TYPES = {
   FOOD: "food",
@@ -59,7 +60,7 @@ const Calendar = () => {
 
   return (
     <div className="calendar">
-      <h3>Calendar</h3>
+      <Text type="h3">Calendar</Text>
       <div className="week">
         {week.map((day, index) => (
           <CalendarDay
@@ -91,13 +92,13 @@ const CalendarDay = ({ date, foods, onRemoveFood, updateCalendarDay }) => {
 
   return (
     <div className="date">
-      <span>{`${date.getDate()}.`}</span>
-      <span style={{ borderBottom: "1px solid gray" }}>
+      <Text type="h2">{`${date.getDate()}.`}</Text>
+      <Text style={{ borderBottom: "1px solid gray" }}>
         {DAYS_OF_THE_WEEK[date.getDay()]}
-      </span>
+      </Text>
       <div ref={drop} style={{ minHeight: "140px" }}>
         {!!foods.length && (
-          <Food
+          <Recipe
             onRemove={() => onRemoveFood(date)}
             style={{
               width: "100%",

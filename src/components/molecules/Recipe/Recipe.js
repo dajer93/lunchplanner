@@ -1,7 +1,11 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 
-import IngredientsList from "./IngredientsList";
+import Button from '#/components/atoms/Button';
+import Text from '#/components/atoms/Text';
+import List from "#/components/atoms/List";
+
+import './styles.css';
 
 const TYPES = {
   FOOD: "food",
@@ -29,10 +33,10 @@ const Food = ({
       style={style}
       className={isDragging ? 'isDragging' : ''}
     >
-      <div style={{ fontWeight: 'bold' }}>{name}</div>
-      {useDescription && <div>{description}</div>}
-      {useIngredientsList && <IngredientsList ingredients={ingredients} />}
-      {useRemoveButton && <button style={{ marginTop: 4 }} onClick={onRemove}>Törlés</button> }
+      <Text type="h4">{name}</Text>
+      {useDescription && <Text type="paragraph">{description}</Text>}
+      {useIngredientsList && <List items={ingredients} />}
+      {useRemoveButton && <Button onClick={onRemove}>Remove</Button> }
     </div>
   );
 };

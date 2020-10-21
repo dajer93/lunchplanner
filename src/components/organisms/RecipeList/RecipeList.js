@@ -1,15 +1,16 @@
 import React from "react";
 import "#/App.css";
 
-import Food from "#/components/molecules/Food";
+import Text from '#/components/atoms/Text';
+import Recipe from "#/components/molecules/Recipe";
 
-import "./foodList.css";
+import "./styles.css";
 
 const FoodList = ({ foods = [], style }) => (
   <div style={style} className="list">
-    <h3>Your recipes</h3>
+    <Text type="h3">Your recipes</Text>
     {foods.map((food, index) => (
-      <Food
+      <Recipe
         style={{
           padding: "8px 12px",
           margin: "2px 0",
