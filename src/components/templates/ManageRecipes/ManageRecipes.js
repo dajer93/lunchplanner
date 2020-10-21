@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 
 import RecipeList from "#/components/organisms/RecipeList";
 import AddRecipe from "#/components/organisms/AddRecipe";
-import { saveFood, loadFoods, getErrorMessage } from "#/services/api";
+import { saveFood, loadFoods, deleteFood, getErrorMessage } from "#/services/api";
 
 import "./styles.scss";
 
-const ManageRecipes = ({ loadFoods, saveFood, recipes }) => {
+const ManageRecipes = ({ loadFoods, saveFood, deleteFood, recipes }) => {
   const [isAddFood, setIsAddFood] = useState(false);
   const onAddFood = (form) => {
     try {
@@ -35,7 +35,7 @@ const ManageRecipes = ({ loadFoods, saveFood, recipes }) => {
   return isAddFood ? (
     <AddRecipe setIsAddFood={() => setIsAddFood(false)} addFood={onAddFood} />
   ) : (
-    <RecipeList className="smallSpacing" setIsAddFood={() => setIsAddFood(true)} foods={recipes} />
+    <RecipeList className="smallSpacing" onRemoveFood={deleteFood} setIsAddFood={() => setIsAddFood(true)} foods={recipes} />
   );
 };
 
@@ -46,6 +46,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   saveFood,
   loadFoods,
+  deleteFood
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageRecipes);

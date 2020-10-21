@@ -1,6 +1,7 @@
 export const SESSION_LOGIN = 'SESSION/LOGIN';
 export const SESSION_LOGOUT = 'SESSION/LOGOUT';
 export const ADD_FOOD = 'FOODS/ADD';
+export const REMOVE_FOOD = 'FOODS/REMOVE';
 export const LOAD_FOODS = 'FOODS/LOAD';
 export const REMOVE_RECIPE = "CALENDAR/REMOVE_RECIPE";
 export const UPDATE_CALENDAR_DAY = "CALENDAR/UPDATE_DAY";

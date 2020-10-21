@@ -1,20 +1,22 @@
 import axios from "axios";
 
 import { getDaysOfCurrentWeek, recipes } from '#/helpers';
-import { addFood, setFoods } from "#/redux/actions/recipes";
+import { addFood, setFoods, removeFood } from "#/redux/actions/recipes";
 import { updateCalendarDay, removeRecipe, setCalendar } from "#/redux/actions/calendar";
 
 import mock from "./mock";
 
 mock.onGet("/api/foods").reply(200, recipes);
 mock.onPost("/api/foods").reply(200);
+mock.onDelete("/api/foods").reply(200);
 
 const week = getDaysOfCurrentWeek();
 week[0].foods = [recipes[0]];
 week[1].foods = [recipes[1]];
 mock.onGet("/api/calendar").reply(200, week);
 mock.onPost("/api/calendar").reply(200);
-mock.onDelete("/api/calendar").reply(200, []);
+mock.onDelete("/api/calendar").reply(200);
+
 
 export const loadFoods = () => async (dispatch) => {
   try {
@@ -31,6 +33,16 @@ export const saveFood = (food) => async (dispatch) => {
     await axios.post("/api/foods", food);
 
     return dispatch(addFood(food));
+  } catch (e) {
+    console.dir(e);
+  }
+};
+
+export const deleteFood = (food) => async (dispatch) => {
+  try {
+    await axios.delete("/api/foods", food);
+
+    return dispatch(removeFood(food));
   } catch (e) {
     console.dir(e);
   }
