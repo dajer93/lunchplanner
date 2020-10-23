@@ -8,16 +8,19 @@
     
     & button {
       position: absolute;
-      top: 0;
+      top: -2px;
       right: 0;
       background: transparent;
       width: 100px;
       color: $aquablue;
       margin: 2px 0 0;
+      border: 1px solid $aquablue;
       
       &:hover {
         color: $buttonBgHoverColor;
         background-color: transparent;
+        color: $aqua;
+        border-color: $aqua;
       }
     }
   }

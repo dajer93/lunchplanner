@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "#/services/axios";
 
 import { getDaysOfCurrentWeek, recipes } from '#/helpers';
 import { addFood, setFoods, removeFood } from "#/redux/actions/recipes";

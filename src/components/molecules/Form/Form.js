@@ -16,7 +16,6 @@ const Form = ({ children, className, fields, onSubmit, submitButton }) => {
   };
 
   const onClickSubmit = () => {
-    console.log(form);
     if (!form) {
       console.log("TODO: no response on empty form");
       return;
@@ -28,8 +27,7 @@ const Form = ({ children, className, fields, onSubmit, submitButton }) => {
   const onKeyDown = ({ keyCode, target }) => {
     if (keyCode === 13) {
       if (target.name === fields[fields.length-1].name) {
-        onSubmit(form);
-        setForm({});
+        onClickSubmit();
       }
     }
   }

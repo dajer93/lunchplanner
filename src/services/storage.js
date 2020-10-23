@@ -4,6 +4,10 @@ const STORAGE_KEYS = {
 
 export const saveSessionData = async (data) => {
   try {
+    if (!data) {
+      return false;
+    }
+
     await window.localStorage.setItem(
       STORAGE_KEYS.SESSION_DATA,
       JSON.stringify(data)

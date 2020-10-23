@@ -38,7 +38,7 @@ const Recipe = ({
       <Text type="h4">{name}</Text>
       {useDescription && <Text type="paragraph">{description}</Text>}
       {useIngredientsList && <List items={ingredients.map(item => ({ ...item, title: item.ingredient }))} />}
-      {useRemoveButton && <Button className={`${removeButtonStyle ? removeButtonStyle : 'delete sm'}`} onClick={onRemove}>Remove</Button> }
+      {useRemoveButton && <Button className={`${removeButtonStyle} sm secondaryDelete`} onClick={onRemove}>Remove</Button> }
     </div>
   );
 };

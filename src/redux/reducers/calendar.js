@@ -18,13 +18,14 @@ export default (state = getDaysOfCurrentWeek(), action) => {
 
         return {
           ...item,
-          foods: [food],
+          foods: [...state[indexOfDay].foods, food],
         };
       });
     }
     case REMOVE_RECIPE: {
-      const { date } = action.payload;
+      const { food, date } = action.payload;
       const indexOfDay = state.findIndex((day) => new Date(day.date).getDay() === date.getDay());
+      const indexOfFood = state[indexOfDay].foods.findIndex(({ name }) => food.name === name);
 
       return state.map((item, index) => {
         if (index !== indexOfDay) {
@@ -33,7 +34,10 @@ export default (state = getDaysOfCurrentWeek(), action) => {
 
         return {
           ...item,
-          foods: [],
+          foods: [
+            ...state[indexOfDay].foods.slice(0, indexOfFood),
+            ...state[indexOfDay].foods.slice(indexOfFood + 1)
+          ],
         };
       });
     }

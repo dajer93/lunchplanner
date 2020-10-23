@@ -1,47 +1,40 @@
-import axios from "axios";
-
-import mock from './mock';
-
-mock.onPost("/auth/login").reply(200, {
-  email: "dajer",
-  token: "qwe123",
-  loggedIn: Date.now(),
-  retcode: 200
-});
-
-mock.onPost("/auth/register").reply(200, {
-  email: "dajer",
-  token: "qwe123",
-  loggedIn: Date.now(),
-  retcode: 200,
-});
+import axios from "#/services/axios";
 
 export const login = async (form = {}) => {
-  const { data = {} } = await axios.post("/auth/login", form);
+  try {
+    const { data = {} } = await axios.post("/auth/login", form);
 
-  return data;
+    return data;
+  } catch (e) {
+    throw new Error(e);
+  }
 };
 
 export const register = (form = {}) => {
-  const { data = {} } = axios.post("/auth/register", form);
+  try {
+    const { data = {} } = axios.post("/auth/register", form);
 
-  return data;
+    return data;
+  } catch (e) {
+    throw new Error(e);
+  }
 };
 
 export const getErrorMessage = (error = {}) => {
-  const { response: { status } = {} } = error;
+  const { message } = error;
+  console.dir(error);
 
-  switch(status) {
-    case 400: {
-      return 'Your email or password was incorrect';
+  switch (message) {
+    case "Error: Request failed with status code 401": {
+      return "Your email or password was incorrect";
     }
 
     case 500: {
-      return 'Server is down :(';
+      return "Server is down :(";
     }
 
     default: {
-      return 'Something went wrong'
+      return "Something went wrong";
     }
   }
-}
+};

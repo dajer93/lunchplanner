@@ -35,7 +35,7 @@ const ManageRecipes = ({ loadFoods, saveFood, deleteFood, recipes }) => {
   return isAddFood ? (
     <AddRecipe setIsAddFood={() => setIsAddFood(false)} addFood={onAddFood} />
   ) : (
-    <RecipeList className="titleOnlyRecipe" removeButtonStyle="titleOnlyRecipeRemove sm secondaryDelete" onRemoveFood={deleteFood} setIsAddFood={() => setIsAddFood(true)} foods={recipes} />
+    <RecipeList className="titleOnlyRecipe" removeButtonStyle="titleOnlyRecipeRemove" onRemoveFood={deleteFood} setIsAddFood={() => setIsAddFood(true)} foods={recipes} />
   );
 };
 

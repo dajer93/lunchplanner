@@ -26,7 +26,7 @@ const RegistrationForm = ({ onRegister, style }) => {
       <h2>Register to lunchplanner</h2>
       <Form
         fields={[
-          { name: "username", title: "Name" },
+          { name: "name", title: "Name" },
           { name: "email", title: "Email", type: "email" },
           { name: "password", title: "Password", type: "password" },
         ]}

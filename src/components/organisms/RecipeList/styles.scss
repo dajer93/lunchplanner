@@ -1,4 +1,4 @@
-@import '#/App.scss';
+@import "#/App.scss";
 
 .recipeList {
   & .header {
@@ -22,5 +22,9 @@
     width: 200px;
     display: flex;
     flex-direction: column;
+
+    .button {
+      border: none;
+    }
   }
 }

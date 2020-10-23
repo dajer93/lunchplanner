@@ -14,5 +14,16 @@
   &:hover {
     border: 1px solid $lightpastelgreen;
     box-shadow: 2px 4px 8px rgba($pastelgreen, .2);
+
+    .button {
+      opacity: 1;
+    }
+  }
+
+  .button {
+    border-top: 1px solid $lightpastelgreen;
+    margin: 0;
+    padding-bottom: 0;
+    opacity: 0;
   }
 }

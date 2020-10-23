@@ -10,7 +10,7 @@ const LoginForm = ({ onLogin, style }) => {
       <h2>Log in to your account</h2>
       <Form
         fields={[
-          { name: "email", title: "Email", type: "email" },
+          { name: "username", title: "Email", type: "email" },
           { name: "password", title: "Password", type: "password" },
         ]}
         onSubmit={onLogin}
