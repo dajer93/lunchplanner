@@ -1,26 +1,25 @@
 import axios from "#/services/axios";
 
-import { getDaysOfCurrentWeek, recipes } from '#/helpers';
 import { addFood, setFoods, removeFood } from "#/redux/actions/recipes";
-import { updateCalendarDay, removeRecipe, setCalendar } from "#/redux/actions/calendar";
+import {
+  updateCalendarDay,
+  removeRecipe,
+  setCalendar,
+} from "#/redux/actions/calendar";
 
-import mock from "./mock";
+const getAxiosConfig = (getState) => {
+  const { session: { sessionData: { token } = {} } = {} } = getState() || {};
 
-mock.onGet("/api/foods").reply(200, recipes);
-mock.onPost("/api/foods").reply(200);
-mock.onDelete("/api/foods").reply(200);
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+};
 
-const week = getDaysOfCurrentWeek();
-week[0].foods = [recipes[0]];
-week[1].foods = [recipes[1]];
-mock.onGet("/api/calendar").reply(200, week);
-mock.onPost("/api/calendar").reply(200);
-mock.onDelete("/api/calendar").reply(200);
-
-
-export const loadFoods = () => async (dispatch) => {
+export const loadFoods = () => async (dispatch, getState) => {
   try {
-    const { data } = await axios.get("/api/foods");
+    const { data } = await axios.get("/api/recipes", getAxiosConfig(getState));
 
     return dispatch(setFoods(data));
   } catch (e) {
@@ -28,19 +27,23 @@ export const loadFoods = () => async (dispatch) => {
   }
 };
 
-export const saveFood = (food) => async (dispatch) => {
+export const saveFood = (food) => async (dispatch, getState) => {
   try {
-    await axios.post("/api/foods", food);
+    const { data } = await axios.post(
+      "/api/recipes",
+      food,
+      getAxiosConfig(getState)
+    );
 
-    return dispatch(addFood(food));
+    return dispatch(addFood(data));
   } catch (e) {
     console.dir(e);
   }
 };
 
-export const deleteFood = (food) => async (dispatch) => {
+export const deleteFood = (food = {}) => async (dispatch, getState) => {
   try {
-    await axios.delete("/api/foods", food);
+    await axios.delete(`/api/recipes/${food._id}`, getAxiosConfig(getState));
 
     return dispatch(removeFood(food));
   } catch (e) {
@@ -48,29 +51,37 @@ export const deleteFood = (food) => async (dispatch) => {
   }
 };
 
-export const updateCalendar = (payload) => async (dispatch) => {
+export const updateCalendar = (calendarDay) => async (dispatch, getState) => {
   try {
-    await axios.post("/api/calendar");
+    const { data } = await axios.post(
+      "/api/calendar",
+      calendarDay,
+      getAxiosConfig(getState)
+    );
 
-    return dispatch(updateCalendarDay(payload));
+    return dispatch(updateCalendarDay(data));
   } catch (e) {
     console.dir(e);
   }
 };
 
-export const removeRecipeFromDay = (payload) => async (dispatch) => {
+export const removeRecipeFromDay = ({ food, date }) => async (dispatch, getState) => {
   try {
-    await axios.delete("/api/calendar");
+    const { data } = await axios.delete(`/api/calendar/${date.getTime()}/${food._id}`, getAxiosConfig(getState));
 
-    return dispatch(removeRecipe(payload));
+    if (data.ok) {
+      dispatch(removeRecipe({ food, date }));
+    } else {
+      // Todo: something went wrong
+    }
   } catch (e) {
     console.dir(e);
   }
 };
 
-export const loadCalendar = (payload) => async (dispatch) => {
+export const loadCalendar = (payload) => async (dispatch, getState) => {
   try {
-    const { data } = await axios.get("/api/calendar");
+    const { data } = await axios.get("/api/calendar", getAxiosConfig(getState));
 
     return dispatch(setCalendar(data));
   } catch (e) {

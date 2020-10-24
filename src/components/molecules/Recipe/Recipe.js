@@ -14,6 +14,7 @@ const TYPES = {
 const Recipe = ({
   className = "",
   description,
+  _id,
   name,
   ingredients = [],
   style,
@@ -24,7 +25,7 @@ const Recipe = ({
   useRemoveButton = false
 }) => {
   const [{ isDragging }, drag] = useDrag({
-    item: { name, description, ingredients, type: TYPES.FOOD },
+    item: { _id, name, description, ingredients, type: TYPES.FOOD },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),

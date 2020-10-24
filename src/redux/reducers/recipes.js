@@ -7,7 +7,7 @@ export default (state = initialState, action) => {
     case ADD_FOOD:
       return [...state, action.payload];
     case REMOVE_FOOD:
-      const index = state.findIndex(item => item.name === action.payload.name);
+      const index = state.findIndex(item => item._id === action.payload._id);
       return [...state.slice(0, index), ...state.slice(index+1)];
     case LOAD_FOODS:
       return action.payload;

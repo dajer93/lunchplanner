@@ -1,8 +1,7 @@
 import { DAY_IN_MILLISECONDS } from '#/constants';
 
-export const getDaysOfCurrentWeek = () => {
+export const getDaysOfCurrentWeek = (date = new Date()) => {
   let week = [];
-  const date = new Date();
   for (let i = 0; i < 7; i++) {
     week.push({
       date: new Date(date.getTime() + i * DAY_IN_MILLISECONDS),

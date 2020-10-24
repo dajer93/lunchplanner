@@ -9,7 +9,7 @@ import "./styles.scss";
 const RecipeList = ({
   removeButtonStyle = "",
   className = "",
-  foods = [],
+  recipes = [],
   setIsAddFood,
   style,
   onRemoveFood,
@@ -22,7 +22,7 @@ const RecipeList = ({
       <Button className="addButton sm" onClick={setIsAddFood} title="Add new" />
     </div>
     <div className="body">
-      {foods.map((food, index) => (
+      {recipes.map((food, index) => (
         <Recipe
           {...food}
           removeButtonStyle={removeButtonStyle}

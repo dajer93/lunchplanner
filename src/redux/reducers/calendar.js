@@ -3,13 +3,19 @@ import {
   REMOVE_RECIPE,
   LOAD_CALENDAR,
 } from "../actionTypes";
-import { getDaysOfCurrentWeek } from "#/helpers";
 
-export default (state = getDaysOfCurrentWeek(), action) => {
+export default (state = [], action) => {
   switch (action.type) {
     case UPDATE_CALENDAR_DAY: {
-      const { food, date } = action.payload;
-      const indexOfDay = state.findIndex((day) => new Date(day.date).getDay() === date.getDay());
+      const { foods, date } = action.payload;
+      const indexOfDay = state.findIndex((day) => new Date(day.date).getDay() === new Date(date).getDay());
+
+      if (indexOfDay === -1) {
+        return [
+          ...state,
+          action.payload
+        ]
+      }
 
       return state.map((item, index) => {
         if (index !== indexOfDay) {
@@ -18,7 +24,7 @@ export default (state = getDaysOfCurrentWeek(), action) => {
 
         return {
           ...item,
-          foods: [...state[indexOfDay].foods, food],
+          foods
         };
       });
     }
