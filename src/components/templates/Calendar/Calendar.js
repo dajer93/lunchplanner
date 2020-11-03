@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Button from "#/components/atoms/Button";
 import Text from "#/components/atoms/Text";
 import { MONTHS_OF_THE_YEAR } from "#/constants";
-import { getDaysOfCurrentWeek } from "#/helpers";
+import { getDaysOfCurrentWeek, isSameDay } from "#/helpers";
 import {
   loadCalendar,
   updateCalendar,
@@ -57,14 +57,7 @@ const Calendar = ({
   startingDate.setDate(startingDate.getDate() + deltaDay);
   const week = getDaysOfCurrentWeek(startingDate).map((day) => {
     const currentDate = day.date;
-    const savedVersion = calendar.find(({ date }) => {
-      const calendarDate = new Date(date);
-      return (
-        currentDate.getDate() === calendarDate.getDate() &&
-        currentDate.getMonth() === calendarDate.getMonth() &&
-        currentDate.getYear() === calendarDate.getYear()
-      );
-    });
+    const savedVersion = calendar.find(({ date }) => isSameDay(new Date(date), currentDate));
 
     return savedVersion ? savedVersion : day;
   });

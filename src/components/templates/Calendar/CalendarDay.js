@@ -3,12 +3,13 @@ import { useDrop } from "react-dnd";
 
 import Text from "#/components/atoms/Text";
 import Recipe from "#/components/molecules/Recipe";
+import { isSameDay } from '#/helpers';
 
 import { TYPES, DAYS_OF_THE_WEEK } from "#/constants";
 import "./styles.scss";
 
 const CalendarDay = ({ date, foods, onRemoveFood, updateCalendarDay }) => {
-  const isToday = date.getDate() === (new Date()).getDate();
+  const isToday = isSameDay(date, new Date());
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: TYPES.FOOD,
     canDrop: () => true,
