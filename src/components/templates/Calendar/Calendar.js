@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { connect } from "react-redux";
 
+import Button from '#/components/atoms/Button';
 import { getDaysOfCurrentWeek } from "#/helpers";
 import {
   loadCalendar,
@@ -17,6 +18,7 @@ const Calendar = ({
   removeRecipeFromDay,
   updateCalendar,
 }) => {
+  const [deltaDay, setDeltaDay] = useState(0);
   const onUpdateCalendarDay = async (food, date) => {
     const { foods: actualFoods = [] } = calendar.find(day => day.date === date) || {};
 
@@ -35,11 +37,22 @@ const Calendar = ({
     }
   }, [loadCalendar]);
 
+  const onNextDay = () => {
+    setDeltaDay(deltaDay + 1);
+  }
+
+  const onPrevDay = () => {
+    setDeltaDay(deltaDay - 1);
+  }
+
   useEffect(() => {
     fetchCalendar();
   }, [fetchCalendar]);
 
-  const week = getDaysOfCurrentWeek().map((day) => {
+  const today = new Date();
+  const startingDate = new Date(today);
+  startingDate.setDate(startingDate.getDate() + deltaDay);
+  const week = getDaysOfCurrentWeek(startingDate).map((day) => {
     const currentDate = day.date;
     const savedVersion = calendar.find(
       ({ date }) => currentDate.getDay() === new Date(date).getDay()
@@ -50,6 +63,10 @@ const Calendar = ({
 
   return (
     <div className="calendar">
+      <div className="controls">
+        <Button className="calendarNavigation" type="sm" title="Previous" onClick={onPrevDay} />
+        <Button className="calendarNavigation" type="sm" title="Next" onClick={onNextDay} />
+      </div>
       <div className="week">
         {week.map(({ foods, date }, index) => {
           return (

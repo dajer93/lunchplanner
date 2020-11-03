@@ -11,42 +11,54 @@
     width: 13%;
     min-height: 200px;
 
+    &.today {
+      & .calendarDay, .calendarDate {
+        color: $grapefruit;
+      }
+    }
+
     & .container {
       position: relative;
       min-height: 400px;
       display: flex;
       flex-direction: column;
 
+      & .recipe span {
+        white-space: nowrap;
+        width: 150px;
+        text-overflow: ellipsis;
+        display: block;
+        overflow: hidden;
+      }
+
       & .calendarRecipe {
         box-sizing: border-box;
         width: 100%;
       }
     }
+
+    span {
+      display: block;
+      text-align: center;
+    }
+
+    & .calendarDay {
+      padding-bottom: $spacingSmall;
+      border-bottom: 1px solid $lightpastelgreen;
+    }
+  
+    & .calendarDate {
+      margin-bottom: $spacingSmall;
+    }
   }
 
-  & .date span {
-    display: block;
-    text-align: center;
-  }
+  & .controls {
+    max-width: 260px;
+    display: flex;
+    margin: 0 0 $spacingLarge auto;
 
-  & .calendar-title {
-    padding: 8px 0;
-  }
-
-  & .calendarDay {
-    padding-bottom: $spacingSmall;
-    border-bottom: 1px solid $lightpastelgreen;
-  }
-
-  & .calendarDate {
-    margin-bottom: $spacingSmall;
-  }
-
-  & .recipe span {
-    white-space: nowrap;
-    width: 150px;
-    text-overflow: ellipsis;
-    display: block;
-    overflow: hidden;
+    & .calendarNavigation {
+      margin: 0 $spacingSmall;
+    }
   }
 }

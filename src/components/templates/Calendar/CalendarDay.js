@@ -9,6 +9,7 @@ import "./styles.scss";
 
 const CalendarDay = ({ date, foods, onRemoveFood, updateCalendarDay }) => {
   const dateObj = new Date(date);
+  const isToday = dateObj.getDate() === (new Date()).getDate();
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: TYPES.FOOD,
     canDrop: () => true,
@@ -23,7 +24,7 @@ const CalendarDay = ({ date, foods, onRemoveFood, updateCalendarDay }) => {
   });
 
   return (
-    <div className="date">
+    <div className={`date${isToday ? ' today' : ''}`}>
       <Text className="calendarDate" type="h3">{`${dateObj.getDate()}.`}</Text>
       <Text className="calendarDay">
         {DAYS_OF_THE_WEEK[dateObj.getDay()]}
