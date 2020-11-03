@@ -1,10 +1,11 @@
-@import '#/App.scss';
+@import "#/App.scss";
 
 .calendar {
   & .week {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    position: relative;
   }
 
   & .date {
@@ -12,7 +13,8 @@
     min-height: 200px;
 
     &.today {
-      & .calendarDay, .calendarDate {
+      & .calendarDay,
+      .calendarDate {
         color: $grapefruit;
       }
     }
@@ -46,7 +48,7 @@
       padding-bottom: $spacingSmall;
       border-bottom: 1px solid $lightpastelgreen;
     }
-  
+
     & .calendarDate {
       margin-bottom: $spacingSmall;
     }
@@ -60,5 +62,11 @@
     & .calendarNavigation {
       margin: 0 $spacingSmall;
     }
+  }
+
+  .month {
+    position: absolute;
+    left: $spacingMedium;
+    top: -36px;
   }
 }

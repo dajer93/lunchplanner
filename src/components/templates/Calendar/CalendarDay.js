@@ -8,14 +8,13 @@ import { TYPES, DAYS_OF_THE_WEEK } from "#/constants";
 import "./styles.scss";
 
 const CalendarDay = ({ date, foods, onRemoveFood, updateCalendarDay }) => {
-  const dateObj = new Date(date);
-  const isToday = dateObj.getDate() === (new Date()).getDate();
+  const isToday = date.getDate() === (new Date()).getDate();
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: TYPES.FOOD,
     canDrop: () => true,
     drop: (item, monitor) => {
       console.log({ item, monitor, canDrop, isOver });
-      updateCalendarDay(item, dateObj);
+      updateCalendarDay(item, date);
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -25,9 +24,9 @@ const CalendarDay = ({ date, foods, onRemoveFood, updateCalendarDay }) => {
 
   return (
     <div className={`date${isToday ? ' today' : ''}`}>
-      <Text className="calendarDate" type="h3">{`${dateObj.getDate()}.`}</Text>
+      <Text className="calendarDate" type="h3">{`${date.getDate()}.`}</Text>
       <Text className="calendarDay">
-        {DAYS_OF_THE_WEEK[dateObj.getDay()]}
+        {DAYS_OF_THE_WEEK[date.getDay()]}
       </Text>
       <div className="container" ref={drop}>
         {foods.map((food, index) => (
@@ -35,7 +34,7 @@ const CalendarDay = ({ date, foods, onRemoveFood, updateCalendarDay }) => {
             {...food}
             key={index}
             className="calendarRecipe"
-            onRemove={() => onRemoveFood(food, dateObj)}
+            onRemove={() => onRemoveFood(food, date)}
             useRemoveButton={true}
             useIngredientsList={true}
           />
