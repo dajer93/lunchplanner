@@ -7,11 +7,12 @@ import Form from "#/components/molecules/Form";
 
 import "./styles.scss";
 
-const AddFood = ({ addFood, className = "", setIsAddFood }) => {
+const AddFood = ({ addFood, className = "", saveIngredient, setIsAddFood }) => {
   const [ingredients, setIngredients] = useState([]);
 
-  const onAddIngredient = (form) => {
-    setIngredients([...ingredients, form]);
+  const onAddIngredient = async (form) => {
+    const ingredient = await saveIngredient(form);
+    setIngredients([...ingredients, ingredient]);
   };
 
   const onAddFood = (form) => {
@@ -42,7 +43,7 @@ const AddFood = ({ addFood, className = "", setIsAddFood }) => {
         <Form
           className="addItem"
           fields={[
-            { name: "ingredient", title: "Ingredients", useLabel: "true" },
+            { name: "name", title: "Ingredients", useLabel: "true" },
           ]}
           onSubmit={onAddIngredient}
           submitButton="Enter"
@@ -50,7 +51,7 @@ const AddFood = ({ addFood, className = "", setIsAddFood }) => {
           <List
             items={ingredients.map((item) => ({
               ...item,
-              title: item.ingredient,
+              title: item.name,
             }))}
           />
         </Form>

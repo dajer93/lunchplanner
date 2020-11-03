@@ -40,13 +40,9 @@ const Calendar = ({
     }
   }, [loadCalendar]);
 
-  const onNextDay = () => {
-    setDeltaDay(deltaDay + 1);
-  };
-
-  const onPrevDay = () => {
-    setDeltaDay(deltaDay - 1);
-  };
+  const onReset = () => setDeltaDay(0);
+  const onNextDay = () => setDeltaDay(deltaDay + 1);
+  const onPrevDay = () => setDeltaDay(deltaDay - 1);
 
   useEffect(() => {
     fetchCalendar();
@@ -67,13 +63,19 @@ const Calendar = ({
       <div className="controls">
         <Button
           className="calendarNavigation"
-          type="sm"
+          type="sm secondary"
+          title="Today"
+          onClick={onReset}
+        />
+        <Button
+          className="calendarNavigation"
+          type="sm secondary"
           title="Previous"
           onClick={onPrevDay}
         />
         <Button
           className="calendarNavigation"
-          type="sm"
+          type="sm secondary"
           title="Next"
           onClick={onNextDay}
         />

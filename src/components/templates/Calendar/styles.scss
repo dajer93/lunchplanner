@@ -6,6 +6,7 @@
     flex-direction: row;
     justify-content: space-around;
     position: relative;
+    margin-top: $spacingExtraLarge;
   }
 
   & .date {
@@ -57,7 +58,9 @@
   & .controls {
     max-width: 260px;
     display: flex;
-    margin: 0 0 $spacingLarge auto;
+    margin: 0 0 0 auto;
+    position: relative;
+    top: 10px;
 
     & .calendarNavigation {
       margin: 0 $spacingSmall;
@@ -67,6 +70,6 @@
   .month {
     position: absolute;
     left: $spacingMedium;
-    top: -36px;
+    top: -58px;
   }
 }

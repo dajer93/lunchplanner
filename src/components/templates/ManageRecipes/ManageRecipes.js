@@ -3,18 +3,16 @@ import { connect } from "react-redux";
 
 import RecipeList from "#/components/organisms/RecipeList";
 import AddRecipe from "#/components/organisms/AddRecipe";
-import { saveFood, loadFoods, deleteFood, getErrorMessage } from "#/services/api";
+import { saveFood, loadFoods, deleteFood, getErrorMessage, saveIngredient } from "#/services/api";
 
 import "./styles.scss";
 
-const ManageRecipes = ({ loadFoods, saveFood, deleteFood, recipes }) => {
+const ManageRecipes = ({ loadFoods, saveFood, saveIngredient, deleteFood, recipes }) => {
   const [isAddFood, setIsAddFood] = useState(false);
   const onAddFood = (form) => {
     try {
-      console.log(form);
       saveFood(form);
       setIsAddFood(false);
-      // saveFood(form);
     } catch (e) {
       console.log(getErrorMessage(e));
     }
@@ -33,7 +31,7 @@ const ManageRecipes = ({ loadFoods, saveFood, deleteFood, recipes }) => {
   }, [fetchFoods]);
 
   return isAddFood ? (
-    <AddRecipe setIsAddFood={() => setIsAddFood(false)} addFood={onAddFood} />
+    <AddRecipe setIsAddFood={() => setIsAddFood(false)} addFood={onAddFood} saveIngredient={saveIngredient} />
   ) : (
     <RecipeList className="titleOnlyRecipe" removeButtonStyle="titleOnlyRecipeRemove" onRemoveFood={deleteFood} setIsAddFood={() => setIsAddFood(true)} recipes={recipes} />
   );
@@ -41,12 +39,14 @@ const ManageRecipes = ({ loadFoods, saveFood, deleteFood, recipes }) => {
 
 const mapStateToProps = (state) => ({
   recipes: state.recipes,
+  ingredients: state.ingredients
 });
 
 const mapDispatchToProps = {
-  saveFood,
   loadFoods,
-  deleteFood
+  deleteFood,
+  saveFood,
+  saveIngredient
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageRecipes);

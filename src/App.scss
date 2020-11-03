@@ -6,8 +6,21 @@ $lightlemon: #F3FFBD;
 $brightlemon: #FBFFEB;
 $aquablue: #B2DBBF;
 $aqua: #74BE8C;
+$darkaqua: #113537;
 $lightpastelgreen: #89948A;
 $pastelgreen: #464E47;
+
+$jet: #363635;
+$ebony: #363635;
+$inchworm: #595A4A;
+$lightgreen: #81E979;
+$darkseagreen: #8FBB99;
+
+$cyanprocess: #00A5E0;
+$vividskyblue: #32CBFF;
+$darkliver: #494646;
+$grayx11gray: #B9B6B6;
+$corniflowerblue: #89A1EF;
 
 // FONT SIZES
 $fontSizeXs: 12px;
@@ -21,16 +34,22 @@ $radius: 4px;
 $radiusLg: 5px;
 
 // BUTTON
-$buttonTextColor: $darkblue;
-$buttonBgColor: $aqua;
-$buttonBorderColor: transparent;
-$buttonBorderHoverColor: $aqua;
-$buttonBgHoverColor: $aquablue;
+$buttonBgColor: $cyanprocess;
+$buttonBorderColor: $cyanprocess;
+$buttonBorderWidth: 2px;
+$buttonHoverBorderColor: $vividskyblue;
+$buttonHoverBgColor: $vividskyblue;
+$buttonHoverTextColor: white;
+$buttonTextColor: white;
 
 // SECONDARY BUTTON
-$secondaryButtonTextColor: $brightlemon;
-$secondaryButtonBgColor: $pastelgreen;
-$secondaryButtonBgHoverColor: $lightpastelgreen;
+$secondaryButtonBgColor: transparent;
+$secondaryButtonBorderColor: $corniflowerblue;
+$secondaryButtonBorderWidth: 2px;
+$secondaryButtonHoverBgColor: transparent;
+$secondaryButtonHoverBorderColor: $grayx11gray;
+$secondaryButtonHoverTextColor: $grayx11gray;
+$secondaryButtonTextColor: $corniflowerblue;
 
 // DELETE BUTTON
 $deleteButtonTextColor: $brightlemon;

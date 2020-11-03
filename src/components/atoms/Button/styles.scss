@@ -10,13 +10,15 @@
   font-size: $fontSize;
   color: $buttonTextColor;
   background-color: $buttonBgColor;
+  border: $buttonBorderWidth solid $buttonBorderColor;
   border-radius: 3px;
   width: 100%;
-  border: none;
   cursor: pointer;
 
   &:hover {
-    background-color: $buttonBgHoverColor;
+    color: $buttonHoverTextColor;
+    background-color: $buttonHoverBgColor;
+    border: $buttonBorderWidth solid $buttonHoverBorderColor;
   }
 
   &.sm {
@@ -25,12 +27,14 @@
   }
 
   &.secondary {
-    color: $secondaryButtonBgColor;
-    background-color: transparent;
+    color: $secondaryButtonTextColor;
+    background-color: $secondaryButtonBgColor;
+    border: $secondaryButtonBorderWidth solid $secondaryButtonBorderColor;
 
     &:hover {
-      background-color: transparent;
-      text-decoration: underline;
+      color: $secondaryButtonHoverTextColor;
+      background-color: $secondaryButtonHoverBgColor;
+      border: $secondaryButtonBorderWidth solid $secondaryButtonHoverBorderColor;
     }
   }
 
