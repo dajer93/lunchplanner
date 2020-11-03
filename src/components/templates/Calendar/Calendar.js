@@ -1,7 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { connect } from "react-redux";
 
-import { getDaysOfCurrentWeek } from "#/helpers";
+import Button from "#/components/atoms/Button";
+import Text from "#/components/atoms/Text";
+import { MONTHS_OF_THE_YEAR } from "#/constants";
+import { getDaysOfCurrentWeek, isSameDay } from "#/helpers";
 import {
   loadCalendar,
   updateCalendar,
@@ -17,10 +20,12 @@ const Calendar = ({
   removeRecipeFromDay,
   updateCalendar,
 }) => {
+  const [deltaDay, setDeltaDay] = useState(0);
   const onUpdateCalendarDay = async (food, date) => {
-    const { foods: actualFoods = [] } = calendar.find(day => day.date === date) || {};
+    const { foods: actualFoods = [] } =
+      calendar.find((day) => day.date === date) || {};
 
-    await updateCalendar({ foods: [ ...actualFoods, food], date });
+    await updateCalendar({ foods: [...actualFoods, food], date });
   };
 
   const onRemoveFood = (food, date) => {
@@ -35,29 +40,69 @@ const Calendar = ({
     }
   }, [loadCalendar]);
 
+  const onNextDay = () => {
+    setDeltaDay(deltaDay + 1);
+  };
+
+  const onPrevDay = () => {
+    setDeltaDay(deltaDay - 1);
+  };
+
   useEffect(() => {
     fetchCalendar();
   }, [fetchCalendar]);
 
-  const week = getDaysOfCurrentWeek().map((day) => {
+  const today = new Date();
+  const startingDate = new Date(today);
+  startingDate.setDate(startingDate.getDate() + deltaDay);
+  const week = getDaysOfCurrentWeek(startingDate).map((day) => {
     const currentDate = day.date;
-    const savedVersion = calendar.find(
-      ({ date }) => currentDate.getDay() === new Date(date).getDay()
-    );
+    const savedVersion = calendar.find(({ date }) => isSameDay(new Date(date), currentDate));
 
     return savedVersion ? savedVersion : day;
   });
 
   return (
     <div className="calendar">
+      <div className="controls">
+        <Button
+          className="calendarNavigation"
+          type="sm"
+          title="Previous"
+          onClick={onPrevDay}
+        />
+        <Button
+          className="calendarNavigation"
+          type="sm"
+          title="Next"
+          onClick={onNextDay}
+        />
+      </div>
       <div className="week">
         {week.map(({ foods, date }, index) => {
+          const dateObj = new Date(date);
+          if (index === 0) {
+            return (
+              <React.Fragment>
+                <Text className="month" type="h2">
+                  {MONTHS_OF_THE_YEAR[dateObj.getMonth()]}
+                </Text>
+                <CalendarDay
+                  key={`day-${index}`}
+                  updateCalendarDay={onUpdateCalendarDay}
+                  onRemoveFood={onRemoveFood}
+                  date={dateObj}
+                  foods={foods}
+                />
+              </React.Fragment>
+            );
+          }
           return (
             <CalendarDay
               key={`day-${index}`}
               updateCalendarDay={onUpdateCalendarDay}
               onRemoveFood={onRemoveFood}
-              date={date}
+              date={dateObj}
               foods={foods}
             />
           );

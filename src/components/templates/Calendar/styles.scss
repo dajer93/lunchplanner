@@ -1,15 +1,23 @@
-@import '#/App.scss';
+@import "#/App.scss";
 
 .calendar {
   & .week {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    position: relative;
   }
 
   & .date {
     width: 13%;
     min-height: 200px;
+
+    &.today {
+      & .calendarDay,
+      .calendarDate {
+        color: $grapefruit;
+      }
+    }
 
     & .container {
       position: relative;
@@ -17,36 +25,48 @@
       display: flex;
       flex-direction: column;
 
+      & .recipe span {
+        white-space: nowrap;
+        width: 150px;
+        text-overflow: ellipsis;
+        display: block;
+        overflow: hidden;
+      }
+
       & .calendarRecipe {
         box-sizing: border-box;
         width: 100%;
       }
     }
+
+    span {
+      display: block;
+      text-align: center;
+    }
+
+    & .calendarDay {
+      padding-bottom: $spacingSmall;
+      border-bottom: 1px solid $lightpastelgreen;
+    }
+
+    & .calendarDate {
+      margin-bottom: $spacingSmall;
+    }
   }
 
-  & .date span {
-    display: block;
-    text-align: center;
+  & .controls {
+    max-width: 260px;
+    display: flex;
+    margin: 0 0 $spacingLarge auto;
+
+    & .calendarNavigation {
+      margin: 0 $spacingSmall;
+    }
   }
 
-  & .calendar-title {
-    padding: 8px 0;
-  }
-
-  & .calendarDay {
-    padding-bottom: $spacingSmall;
-    border-bottom: 1px solid $lightpastelgreen;
-  }
-
-  & .calendarDate {
-    margin-bottom: $spacingSmall;
-  }
-
-  & .recipe span {
-    white-space: nowrap;
-    width: 150px;
-    text-overflow: ellipsis;
-    display: block;
-    overflow: hidden;
+  .month {
+    position: absolute;
+    left: $spacingMedium;
+    top: -36px;
   }
 }
