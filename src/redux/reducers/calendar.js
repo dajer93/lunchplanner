@@ -9,7 +9,7 @@ export default (state = [], action) => {
   switch (action.type) {
     case UPDATE_CALENDAR_DAY: {
       const { foods, date } = action.payload;
-      const indexOfDay = state.findIndex((day) => isSameDay(new Date(day.date), new Date(date)));
+      const indexOfDay = state.findIndex((day) => isSameDay(day.date, date));
 
       if (indexOfDay === -1) {
         return [
@@ -31,7 +31,7 @@ export default (state = [], action) => {
     }
     case REMOVE_RECIPE: {
       const { food, date } = action.payload;
-      const indexOfDay = state.findIndex((day) => isSameDay(new Date(day.date), new Date(date)));
+      const indexOfDay = state.findIndex((day) => isSameDay(day.date, date));
       const indexOfFood = state[indexOfDay].foods.findIndex(({ name }) => food.name === name);
 
       return state.map((item, index) => {
