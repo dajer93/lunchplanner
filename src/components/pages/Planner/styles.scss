@@ -1,18 +1,18 @@
-@import '#/App.scss';
+@import "#/App.scss";
 
 .container {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: stretch;
+  height: 100vh;
 }
 
 .recipes {
   width: 300px;
-  margin-right: $spacingMedium;
-  border-right: 1px solid $lightpastelgreen;
-}
-
-.calendar {
-  width: 100%;
+  border-right: 1px solid $borderColor;
+  padding-top: 80px;
+  padding-left: 40px;
+  z-index: 10;
+  background-color: $backgroundColor2;
 }

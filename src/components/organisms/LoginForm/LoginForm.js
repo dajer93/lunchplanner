@@ -1,13 +1,14 @@
 import React from "react";
 
+import Text from '#/components/atoms/Text';
 import Form from "#/components/molecules/Form";
 
-import './styles.css';
+import './styles.scss';
 
 const LoginForm = ({ onLogin, style }) => {
   return (
-    <div style={style}>
-      <h2>Log in to your account</h2>
+    <div className="login">
+      <Text type="h1" className="center">Log in to your account</Text>
       <Form
         fields={[
           { name: "username", title: "Email", type: "email" },

@@ -14,9 +14,7 @@ const Planner = () => {
         <div className="recipes">
           <ManageRecipes />
         </div>
-        <div className="calendar">
-          <Calendar />
-        </div>
+        <Calendar />
       </div>
     </DndProvider>
   );

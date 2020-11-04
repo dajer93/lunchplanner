@@ -22,11 +22,22 @@ $darkliver: #494646;
 $grayx11gray: #B9B6B6;
 $corniflowerblue: #89A1EF;
 
+$mintCream: #EEFBF5;
+$turquoiseGreen: #AED5C0;
+$cultured: #EDEDED;
+$gunMetal: #122C34;
+$aquaMarine: #76F7BF;
+
+$borderColor: $darkliver;
+$backgroundColor1: $mintCream;
+$backgroundColor2: $cultured;
+
 // FONT SIZES
 $fontSizeXs: 12px;
 $fontSizeSm: 14px;
 $fontSize: 16px;
 $fontSizeLg: 18px;
+$fontSizeExtraLg: 28px;
 
 // BORDER RADIUSES
 $radiusSm: 3px;
@@ -44,12 +55,12 @@ $buttonTextColor: white;
 
 // SECONDARY BUTTON
 $secondaryButtonBgColor: transparent;
-$secondaryButtonBorderColor: $corniflowerblue;
+$secondaryButtonBorderColor: $gunMetal;
 $secondaryButtonBorderWidth: 2px;
 $secondaryButtonHoverBgColor: transparent;
-$secondaryButtonHoverBorderColor: $grayx11gray;
-$secondaryButtonHoverTextColor: $grayx11gray;
-$secondaryButtonTextColor: $corniflowerblue;
+$secondaryButtonHoverBorderColor: $cyanprocess;
+$secondaryButtonHoverTextColor: $cyanprocess;
+$secondaryButtonTextColor: $gunMetal;
 
 // DELETE BUTTON
 $deleteButtonTextColor: $brightlemon;
@@ -71,13 +82,14 @@ $inputBorderWidth: 1px;
 $inputFocusedOutlineColor: $lightpastelgreen; 
 
 // SPACING
+$spacingExtraSmall: 4px;
 $spacingSmall: 8px;
 $spacingMedium: 10px;
 $spacingLarge: 20px;
 $spacingExtraLarge: 40px;
 
 html {
-  background: $brightlemon;
+  background: $backgroundColor1;
 }
 
 .container {

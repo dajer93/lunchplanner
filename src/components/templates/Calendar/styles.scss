@@ -1,12 +1,19 @@
 @import "#/App.scss";
 
 .calendar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $backgroundColor1;
+  overflow: scroll;
+
   & .week {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     position: relative;
-    margin-top: $spacingExtraLarge;
+    padding-top: 80px;
   }
 
   & .date {
@@ -47,7 +54,7 @@
 
     & .calendarDay {
       padding-bottom: $spacingSmall;
-      border-bottom: 1px solid $lightpastelgreen;
+      border-bottom: 1px solid $borderColor;
     }
 
     & .calendarDate {
@@ -56,20 +63,37 @@
   }
 
   & .controls {
-    max-width: 260px;
+    max-width: 200px;
     display: flex;
-    margin: 0 0 0 auto;
+    margin: 10px 20px 0 auto;
     position: relative;
-    top: 10px;
+    margin-top: 10px;
 
     & .calendarNavigation {
-      margin: 0 $spacingSmall;
+      margin: 0 $spacingExtraSmall;
+
+      &.arrow  {
+        flex-shrink: 2;
+      }
     }
   }
 
-  .month {
-    position: absolute;
-    left: $spacingMedium;
-    top: -58px;
+  & .month {
+    position: fixed;
+    left: 320px;
+    top: 18px;
+    z-index: 5;
+  }
+
+  & .calendarHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid $borderColor;
+    padding-bottom: $spacingSmall;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+    background-color: $backgroundColor2;
+    z-index: 5;
+    width: 100%;
   }
 }
