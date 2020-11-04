@@ -17,6 +17,33 @@ const getAxiosConfig = (getState) => {
   };
 };
 
+export const loadIngredients = () => async (dispatch, getState) => {
+  try {
+    const { data } = await axios.get(
+      "/api/ingredients",
+      getAxiosConfig(getState)
+    );
+
+    return data;
+  } catch (e) {
+    console.dir(e);
+  }
+};
+
+export const saveIngredient = (ingredient) => async (dispatch, getState) => {
+  try {
+    const { data } = await axios.post(
+      "/api/ingredients",
+      ingredient,
+      getAxiosConfig(getState)
+    );
+
+    return data;
+  } catch (e) {
+    console.dir(e);
+  }
+};
+
 export const loadFoods = () => async (dispatch, getState) => {
   try {
     const { data } = await axios.get("/api/recipes", getAxiosConfig(getState));
@@ -65,9 +92,15 @@ export const updateCalendar = (calendarDay) => async (dispatch, getState) => {
   }
 };
 
-export const removeRecipeFromDay = ({ food, date }) => async (dispatch, getState) => {
+export const removeRecipeFromDay = ({ food, date }) => async (
+  dispatch,
+  getState
+) => {
   try {
-    const { data } = await axios.delete(`/api/calendar/${date.getTime()}/${food._id}`, getAxiosConfig(getState));
+    const { data } = await axios.delete(
+      `/api/calendar/${date.getTime()}/${food._id}`,
+      getAxiosConfig(getState)
+    );
 
     if (data.ok) {
       dispatch(removeRecipe({ food, date }));

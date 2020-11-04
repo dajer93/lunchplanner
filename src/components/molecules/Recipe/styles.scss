@@ -6,13 +6,13 @@
   padding: 10px 12px;
   margin: $spacingSmall 0;
   font-size: $fontSizeXs;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   cursor: pointer;
   transition: .2s ease all;
   border-radius: $radiusSm;
 
   &:hover {
-    border: 1px solid $lightpastelgreen;
+    border: 2px solid $lightpastelgreen;
     box-shadow: 2px 4px 8px rgba($pastelgreen, .2);
 
     .button {
@@ -21,7 +21,9 @@
   }
 
   .button {
-    border-top: 1px solid $lightpastelgreen;
+    border-width: 1px  0 0;
+    border-style: solid;
+    border-color: $lightpastelgreen;
     margin: 0;
     padding-bottom: 0;
     opacity: 0;

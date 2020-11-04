@@ -40,13 +40,9 @@ const Calendar = ({
     }
   }, [loadCalendar]);
 
-  const onNextDay = () => {
-    setDeltaDay(deltaDay + 1);
-  };
-
-  const onPrevDay = () => {
-    setDeltaDay(deltaDay - 1);
-  };
+  const onReset = () => setDeltaDay(0);
+  const onNextDay = () => setDeltaDay(deltaDay + 1);
+  const onPrevDay = () => setDeltaDay(deltaDay - 1);
 
   useEffect(() => {
     fetchCalendar();
@@ -57,26 +53,36 @@ const Calendar = ({
   startingDate.setDate(startingDate.getDate() + deltaDay);
   const week = getDaysOfCurrentWeek(startingDate).map((day) => {
     const currentDate = day.date;
-    const savedVersion = calendar.find(({ date }) => isSameDay(new Date(date), currentDate));
+    const savedVersion = calendar.find(({ date }) =>
+      isSameDay(new Date(date), currentDate)
+    );
 
     return savedVersion ? savedVersion : day;
   });
 
   return (
     <div className="calendar">
-      <div className="controls">
-        <Button
-          className="calendarNavigation"
-          type="sm"
-          title="Previous"
-          onClick={onPrevDay}
-        />
-        <Button
-          className="calendarNavigation"
-          type="sm"
-          title="Next"
-          onClick={onNextDay}
-        />
+      <div className="calendarHeader">
+        <div className="controls">
+          <Button
+            className="calendarNavigation arrow"
+            type="sm secondary"
+            title="<"
+            onClick={onPrevDay}
+          />
+          <Button
+            className="calendarNavigation"
+            type="sm secondary"
+            title="Today"
+            onClick={onReset}
+          />
+          <Button
+            className="calendarNavigation arrow"
+            type="sm secondary"
+            title=">"
+            onClick={onNextDay}
+          />
+        </div>
       </div>
       <div className="week">
         {week.map(({ foods, date }, index) => {

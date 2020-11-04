@@ -6,14 +6,38 @@ $lightlemon: #F3FFBD;
 $brightlemon: #FBFFEB;
 $aquablue: #B2DBBF;
 $aqua: #74BE8C;
+$darkaqua: #113537;
 $lightpastelgreen: #89948A;
 $pastelgreen: #464E47;
+
+$jet: #363635;
+$ebony: #363635;
+$inchworm: #595A4A;
+$lightgreen: #81E979;
+$darkseagreen: #8FBB99;
+
+$cyanprocess: #00A5E0;
+$vividskyblue: #32CBFF;
+$darkliver: #494646;
+$grayx11gray: #B9B6B6;
+$corniflowerblue: #89A1EF;
+
+$mintCream: #EEFBF5;
+$turquoiseGreen: #AED5C0;
+$cultured: #EDEDED;
+$gunMetal: #122C34;
+$aquaMarine: #76F7BF;
+
+$borderColor: $darkliver;
+$backgroundColor1: $mintCream;
+$backgroundColor2: $cultured;
 
 // FONT SIZES
 $fontSizeXs: 12px;
 $fontSizeSm: 14px;
 $fontSize: 16px;
 $fontSizeLg: 18px;
+$fontSizeExtraLg: 28px;
 
 // BORDER RADIUSES
 $radiusSm: 3px;
@@ -21,16 +45,22 @@ $radius: 4px;
 $radiusLg: 5px;
 
 // BUTTON
-$buttonTextColor: $darkblue;
-$buttonBgColor: $aqua;
-$buttonBorderColor: transparent;
-$buttonBorderHoverColor: $aqua;
-$buttonBgHoverColor: $aquablue;
+$buttonBgColor: $cyanprocess;
+$buttonBorderColor: $cyanprocess;
+$buttonBorderWidth: 2px;
+$buttonHoverBorderColor: $vividskyblue;
+$buttonHoverBgColor: $vividskyblue;
+$buttonHoverTextColor: white;
+$buttonTextColor: white;
 
 // SECONDARY BUTTON
-$secondaryButtonTextColor: $brightlemon;
-$secondaryButtonBgColor: $pastelgreen;
-$secondaryButtonBgHoverColor: $lightpastelgreen;
+$secondaryButtonBgColor: transparent;
+$secondaryButtonBorderColor: $gunMetal;
+$secondaryButtonBorderWidth: 2px;
+$secondaryButtonHoverBgColor: transparent;
+$secondaryButtonHoverBorderColor: $cyanprocess;
+$secondaryButtonHoverTextColor: $cyanprocess;
+$secondaryButtonTextColor: $gunMetal;
 
 // DELETE BUTTON
 $deleteButtonTextColor: $brightlemon;
@@ -52,13 +82,14 @@ $inputBorderWidth: 1px;
 $inputFocusedOutlineColor: $lightpastelgreen; 
 
 // SPACING
+$spacingExtraSmall: 4px;
 $spacingSmall: 8px;
 $spacingMedium: 10px;
 $spacingLarge: 20px;
 $spacingExtraLarge: 40px;
 
 html {
-  background: $brightlemon;
+  background: $backgroundColor1;
 }
 
 .container {
