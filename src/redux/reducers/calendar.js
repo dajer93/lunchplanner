@@ -3,12 +3,13 @@ import {
   REMOVE_RECIPE,
   LOAD_CALENDAR,
 } from "../actionTypes";
+import { isSameDay } from "#/helpers";
 
 export default (state = [], action) => {
   switch (action.type) {
     case UPDATE_CALENDAR_DAY: {
       const { foods, date } = action.payload;
-      const indexOfDay = state.findIndex((day) => new Date(day.date).getDay() === new Date(date).getDay());
+      const indexOfDay = state.findIndex((day) => isSameDay(new Date(day.date), new Date(date)));
 
       if (indexOfDay === -1) {
         return [
@@ -30,7 +31,7 @@ export default (state = [], action) => {
     }
     case REMOVE_RECIPE: {
       const { food, date } = action.payload;
-      const indexOfDay = state.findIndex((day) => new Date(day.date).getDay() === date.getDay());
+      const indexOfDay = state.findIndex((day) => isSameDay(new Date(day.date), new Date(date)));
       const indexOfFood = state[indexOfDay].foods.findIndex(({ name }) => food.name === name);
 
       return state.map((item, index) => {
