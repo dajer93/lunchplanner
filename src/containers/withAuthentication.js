@@ -103,24 +103,4 @@ const withAuthentication = (WrappedComponent) => {
   return connect(mapStateToProps, mapDispatchToProps)(Authentication);
 };
 
-export const PrivateRoute = ({ children, isAuthenticated, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        isAuthenticated ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: location },
-            }}
-          />
-        )
-      }
-    />
-  );
-};
-
 export default withAuthentication;

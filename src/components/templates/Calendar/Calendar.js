@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import { connect } from "react-redux";
 
-import Button from "#/components/atoms/Button";
 import Text from "#/components/atoms/Text";
 import { MONTHS_OF_THE_YEAR } from "#/constants";
 import { getDaysOfCurrentWeek, isSameDay } from "#/helpers";
@@ -11,16 +10,17 @@ import {
   removeRecipeFromDay,
 } from "#/services/api";
 
+import CalendarControls from "./CalendarControls";
 import CalendarDay from "./CalendarDay";
 import "./styles.scss";
 
 const Calendar = ({
   calendar = [],
+  deltaDay = 0,
   loadCalendar,
   removeRecipeFromDay,
   updateCalendar,
 }) => {
-  const [deltaDay, setDeltaDay] = useState(0);
   const onUpdateCalendarDay = async (food, date) => {
     const { foods: actualFoods = [] } =
       calendar.find((day) => day.date === date) || {};
@@ -39,10 +39,6 @@ const Calendar = ({
       console.dir(e);
     }
   }, [loadCalendar]);
-
-  const onReset = () => setDeltaDay(0);
-  const onNextDay = () => setDeltaDay(deltaDay + 1);
-  const onPrevDay = () => setDeltaDay(deltaDay - 1);
 
   useEffect(() => {
     fetchCalendar();
@@ -63,26 +59,7 @@ const Calendar = ({
   return (
     <div className="calendar">
       <div className="calendarHeader">
-        <div className="controls">
-          <Button
-            className="calendarNavigation arrow"
-            type="sm secondary"
-            title="<"
-            onClick={onPrevDay}
-          />
-          <Button
-            className="calendarNavigation"
-            type="sm secondary"
-            title="Today"
-            onClick={onReset}
-          />
-          <Button
-            className="calendarNavigation arrow"
-            type="sm secondary"
-            title=">"
-            onClick={onNextDay}
-          />
-        </div>
+        <CalendarControls />
       </div>
       <div className="week">
         {week.map(({ foods, date }, index) => {
@@ -120,12 +97,13 @@ const Calendar = ({
 
 const mapStateToProps = (state) => ({
   calendar: state.calendar,
+  deltaDay: state.calendarControls.deltaDay
 });
 
 const mapDispatchToProps = {
-  updateCalendar,
-  removeRecipeFromDay,
   loadCalendar,
+  removeRecipeFromDay,
+  updateCalendar,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
