@@ -18,6 +18,15 @@ app.use(express.json());
 app.get("/", (req, res, next) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 });
+app.get("/login", (req, res, next) => {
+  res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
+});
+app.get("/registration", (req, res, next) => {
+  res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
+});
+app.get("/thank-you-for-registration", (req, res, next) => {
+  res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
+});
 
 app.use(auth.initialize());
 app.use("/auth", authRouter);

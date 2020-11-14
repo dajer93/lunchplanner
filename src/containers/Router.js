@@ -26,13 +26,13 @@ const AppRouter = (props) => {
           </Route>
           <PrivateRoute {...props} exact path="/">
             <Planner {...props} />
+            <Button
+              className="logoutButton sm secondary"
+              title="Logout"
+              onClick={props.onLogout}
+            />
           </PrivateRoute>
         </Switch>
-        <Button
-          className="logoutButton sm secondary"
-          title="Logout"
-          onClick={props.onLogout}
-        />
       </div>
     </Router>
   );
