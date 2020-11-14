@@ -1,4 +1,10 @@
-import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
+import axios from "#/services/axios";
 
-export default new AxiosMockAdapter(axios);
+let mock = null;
+
+if (process.env.NODE_ENV === "development") {
+  mock = new AxiosMockAdapter(axios);
+}
+
+export default mock;
