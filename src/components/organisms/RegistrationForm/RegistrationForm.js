@@ -1,24 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
+import { useHistory } from 'react-router-dom';
 
 import Form from "#/components/molecules/Form";
 
 import './styles.css';
 
 const RegistrationForm = ({ onRegister, style }) => {
-  const [isRegistered, setIsRegistered] = useState(false);
+  const history = useHistory();
 
-  if (isRegistered) {
-    return (
-      <div style={style}>
-        <h2>Thank you</h2>
-        <p>Now you can log in to your account</p>
-      </div>
-    );
-  }
-
-  const handleRegister = data => {
-    setIsRegistered(true);
-    onRegister(data);
+  const handleRegister = async data => {
+    await onRegister(data);
+    history.push('/thank-you-for-registration');
   }
 
   return (

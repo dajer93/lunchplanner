@@ -1,32 +1,44 @@
-import React, { useState } from "react";
+import React from "react";
+import { Redirect, useHistory } from "react-router-dom";
 
 import Button from "#/components/atoms/Button";
 import LoginForm from "#/components/organisms/LoginForm";
-import RegistrationForm from "#/components/organisms/RegistrationForm";
 
-import './styles.scss';
+import "./styles.scss";
 
-const Login = ({ error, onLogin, onRegister }) => {
-  const [isRegistration, setIsRegistration] = useState(false);
+const Login = ({ error, onLogin, isAuthenticated }) => {
+  const history = useHistory();
 
-  const showRegistration = () => setIsRegistration(true);
-  const showLogin = () => setIsRegistration(false);
+  const showRegistration = () => history.push("/registration");
+
+  const handleLogin = async (data) => {
+    await onLogin(data);
+    history.push("/");
+  };
+
+  if (isAuthenticated) {
+    return (
+      <Redirect
+        to={{
+          pathname: "/",
+          state: { from: "/login" },
+        }}
+      />
+    );
+  }
 
   return (
-    <div className='login'>
+    <div className="login">
       <div className="form">
-        {isRegistration ? (
-          <RegistrationForm onRegister={onRegister} />
-        ) : (
-          <LoginForm onLogin={onLogin} />
-        )}
+        <LoginForm onLogin={handleLogin} />
         {error && <div style={{ color: "red" }}>{error}</div>}
       </div>
       <div className="alternatives">
-        {!isRegistration && (
-          <Button className="secondary sm" title="Register to lunchplanner" onClick={showRegistration} />
-        )}
-        {isRegistration && <Button className="secondary sm" title="Log in to your account" onClick={showLogin} />}
+        <Button
+          className="secondary sm"
+          title="Register to lunchplanner"
+          onClick={showRegistration}
+        />
       </div>
     </div>
   );
