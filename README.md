@@ -11,7 +11,6 @@ Production app: http://lunchplanner.xyz/
     DB_HOST=localhost
     DB_PORT=27017
     DB_NAME=lunchplanner
-    REACT_APP_ENV=production      // Set it development to use api mock
 
 ## Available Scripts
 
