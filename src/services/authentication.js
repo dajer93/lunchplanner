@@ -1,4 +1,9 @@
 import axios from "#/services/axios";
+import { mockAuth } from "./mock";
+
+if (process.env.REACT_APP_ENV === "development") {
+  mockAuth();
+}
 
 export const login = async (form = {}) => {
   try {

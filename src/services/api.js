@@ -6,6 +6,11 @@ import {
   removeRecipe,
   setCalendar,
 } from "#/redux/actions/calendar";
+import { mockApi } from "./mock";
+
+if (process.env.REACT_APP_ENV === "development") {
+  mockApi();
+}
 
 const getAxiosConfig = (getState) => {
   const { session: { sessionData: { token } = {} } = {} } = getState() || {};
