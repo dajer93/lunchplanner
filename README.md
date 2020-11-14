@@ -1,6 +1,8 @@
 # lunchplanner
 This app was made to support home-office life. Plan what you'll eat during the week.
 
+Production app: http://lunchplanner.xyz/
+
 ## .env config example:
 
     PORT=8089
@@ -26,13 +28,9 @@ Before starting the server, make sure you have already run `npm run build` to cr
 
 ### `npm run watch`
 
-Runs the frontend app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Starts a node process that serves the app and automatically rebuilds the app & restarts the node server when file changes in the directory are detected.
 
 ### `npm run build`
 
-Builds the frontend app for production to the `build` folder.<br />
+Builds the frontend app for production to the `build` folder.
 It correctly bundles React in production mode and optimizes the build for the best performance.

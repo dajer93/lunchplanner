@@ -76,11 +76,14 @@
     "webpack-manifest-plugin": "2.2.0",
     "workbox-webpack-plugin": "4.3.1"
   },
+  "nodemonConfig": {
+    "ignore": ["build/*"]
+  },
   "scripts": {
-    "start": "npm run build && node ./server/server.js",
+    "build": "node scripts/build.js",
     "server": "node server/server.js",
-    "watch": "node scripts/start.js",
-    "build": "node scripts/build.js"
+    "watch": "nodemon lunchplanner",
+    "start": "npm run build && npm run server"
   },
   "eslintConfig": {
     "extends": "react-app"
