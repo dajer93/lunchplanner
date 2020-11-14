@@ -1,7 +1,7 @@
 import axios from "#/services/axios";
-import { mockAuth } from "./mock";
+import mockAuth from "./mock/authentication";
 
-if (process.env.REACT_APP_ENV === "development") {
+if (process.env.NODE_ENV === "development") {
   mockAuth();
 }
 

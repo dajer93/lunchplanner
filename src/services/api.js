@@ -6,9 +6,9 @@ import {
   removeRecipe,
   setCalendar,
 } from "#/redux/actions/calendar";
-import { mockApi } from "./mock";
+import mockApi from "./mock/api";
 
-if (process.env.REACT_APP_ENV === "development") {
+if (process.env.NODE_ENV === "development") {
   mockApi();
 }
 

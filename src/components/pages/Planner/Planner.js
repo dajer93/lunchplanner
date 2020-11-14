@@ -10,7 +10,7 @@ import "./styles.scss";
 const Planner = () => {
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="container">
+      <div className="container"> 
         <div className="recipes">
           <ManageRecipes />
         </div>
